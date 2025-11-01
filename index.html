@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gableci - Jelovnici</title>
+
+    <!-- Inline SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%234a90e2' rx='20'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial, sans-serif'>G</text></svg>">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 15px 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: white;
+            color: #4a90e2;
+            border-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .content {
+            flex: 1;
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .menu-content {
+            display: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .menu-content.active {
+            display: block;
+        }
+
+        .menu-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            overflow: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .lightbox-content img {
+            max-width: 95%;
+            max-height: 95vh;
+            object-fit: contain;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            touch-action: pan-x pan-y pinch-zoom;
+        }
+
+        .close-lightbox {
+            position: fixed;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+            transition: color 0.3s ease;
+            user-select: none;
+        }
+
+        .close-lightbox:hover {
+            color: #bbb;
+        }
+
+        /* Zoom hint for mobile */
+        .zoom-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 1001;
+            animation: fadeOut 3s ease forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fadeOut {
+            0%, 70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        footer p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+            border-bottom-color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .tab {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            .close-lightbox {
+                top: 10px;
+                right: 20px;
+                font-size: 40px;
+            }
+
+            .lightbox-content {
+                padding: 10px;
+            }
+
+            .lightbox-content img {
+                max-width: 100%;
+                max-height: 90vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .tabs {
+                gap: 8px;
+            }
+
+            .tab {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            footer {
+                font-size: 0.9rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Gableci</h1>
+        <p class="subtitle">Dnevni jelovnici</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showMenu('stadion')">Stadion</button>
+        <button class="tab" onclick="showMenu('vugrinscak')">Vugrinšćak</button>
+        <button class="tab" onclick="showMenu('breza')">Breza</button>
+    </div>
+
+    <div class="content">
+        <div id="stadion" class="menu-content active">
+            <img src="https://cdn.hrva.cc/gableci/stadion.jpg" alt="Stadion Menu" onclick="openLightbox(this)">
+        </div>
+        <div id="vugrinscak" class="menu-content">
+            <img src="https://cdn.hrva.cc/gableci/vugrinscak.jpg" alt="Vugrinšćak Menu" onclick="openLightbox(this)">
+        </div>
+        <div id="breza" class="menu-content">
+            <img src="https://cdn.hrva.cc/gableci/breza.jpg" alt="Breza Menu" onclick="openLightbox(this)">
+        </div>
+    </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+</div>
+
+<footer>
+    <p>Powered By <a href="https://hrva.cc" target="_blank">HrvaLabs.net</a> and Sponsored by <a href="https://greenbytehub.hr" target="_blank">GreenByteHub</a></p>
+</footer>
+
+<script>
+    function showMenu(menuId) {
+        const allMenus = document.querySelectorAll('.menu-content');
+        allMenus.forEach(menu => menu.classList.remove('active'));
+
+        const allTabs = document.querySelectorAll('.tab');
+        allTabs.forEach(tab => tab.classList.remove('active'));
+
+        document.getElementById(menuId).classList.add('active');
+        event.target.classList.add('active');
+    }
+
+    function setViewport(maxScale, userScalable) {
+        let viewport = document.querySelector('meta[name=viewport]');
+        if (viewport) {
+            viewport.setAttribute('content',
+                `width=device-width, initial-scale=1.0, maximum-scale=${maxScale}, user-scalable=${userScalable}`
+            );
+        }
+    }
+
+    function openLightbox(imgElement) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // Enable zooming on mobile
+        setViewport('10.0', 'yes');
+
+        lightbox.style.display = 'block';
+        lightboxImg.src = imgElement.src;
+        lightboxImg.alt = imgElement.alt;
+
+        document.body.style.overflow = 'hidden';
+
+        // Show zoom hint on mobile
+        if (window.innerWidth <= 768) {
+            showZoomHint();
+        }
+    }
+
+    function closeLightbox(event) {
+        const lightbox = document.getElementById('lightbox');
+
+        if (event.target === lightbox || event.target.className === 'close-lightbox') {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+
+            // Disable zooming when lightbox closes
+            setViewport('1.0', 'no');
+        }
+    }
+
+    function showZoomHint() {
+        // Check if hint already shown in this session
+        if (sessionStorage.getItem('zoomHintShown')) {
+            return;
+        }
+
+        const hint = document.createElement('div');
+        hint.className = 'zoom-hint';
+        hint.textContent = '🔍 Pinch to zoom';
+        document.body.appendChild(hint);
+
+        setTimeout(() => {
+            hint.remove();
+        }, 3000);
+
+        sessionStorage.setItem('zoomHintShown', 'true');
+    }
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.style.display === 'block') {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                setViewport('1.0', 'no');
+            }
+        }
+    });
+</script>
+</body>
+</html>
