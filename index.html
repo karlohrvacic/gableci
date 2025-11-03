@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gableci - Jelovnici</title>
 
-    <!-- Inline SVG Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%234a90e2' rx='20'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial, sans-serif'>G</text></svg>">
 
     <style>
@@ -106,43 +105,83 @@
             display: block;
         }
 
-        /* Image magnifier container */
-        .img-magnifier-container {
-            position: relative;
-            display: inline-block;
-            cursor: crosshair;
-        }
-
-        .img-magnifier-container img {
+        .menu-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .menu-content img:hover {
+            opacity: 0.9;
+        }
+
+        /* Simple fullscreen viewer */
+        .viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .viewer.active {
             display: block;
         }
 
-        /* Magnifying glass */
-        .img-magnifier-glass {
-            position: absolute;
-            border: 3px solid #4a90e2;
-            border-radius: 50%;
-            cursor: none;
-            width: 150px;
-            height: 150px;
-            background-repeat: no-repeat;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            pointer-events: none;
-            z-index: 100;
+        .viewer-content {
+            min-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px 20px;
         }
 
-        .zoom-hint {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: rgba(74, 144, 226, 0.1);
-            border-radius: 8px;
-            color: #357abd;
+        .viewer img {
+            max-width: none;
+            width: auto;
+            height: auto;
+            display: block;
+            cursor: grab;
+        }
+
+        .viewer img:active {
+            cursor: grabbing;
+        }
+
+        .close-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: #333;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            background: #f0f0f0;
+            transform: scale(1.1);
+        }
+
+        .hint {
+            margin-top: 10px;
+            color: #666;
             font-size: 14px;
-            font-weight: 500;
         }
 
         footer {
@@ -191,9 +230,10 @@
                 padding: 15px;
             }
 
-            .img-magnifier-glass {
-                width: 100px;
-                height: 100px;
+            .close-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
             }
         }
 
@@ -209,12 +249,6 @@
             .tab {
                 padding: 10px 20px;
                 font-size: 0.9rem;
-            }
-
-            .img-magnifier-glass {
-                width: 80px;
-                height: 80px;
-                border-width: 2px;
             }
 
             footer {
@@ -239,23 +273,25 @@
 
     <div class="content">
         <div id="stadion" class="menu-content active">
-            <div class="img-magnifier-container">
-                <img id="stadion-img" src="https://cdn.hrva.cc/gableci/stadion.jpg" alt="Stadion Menu">
-            </div>
-            <div class="zoom-hint">🔍 Hover over the image to magnify</div>
+            <img src="https://cdn.hrva.cc/gableci/stadion.jpg" alt="Stadion Menu" onclick="openViewer(this.src)">
+            <div class="hint">👆 Click to view full size</div>
         </div>
         <div id="vugrinscak" class="menu-content">
-            <div class="img-magnifier-container">
-                <img id="vugrinscak-img" src="https://cdn.hrva.cc/gableci/vugrinscak.png" alt="Vugrinšćak Menu">
-            </div>
-            <div class="zoom-hint">🔍 Hover over the image to magnify</div>
+            <img src="https://cdn.hrva.cc/gableci/vugrinscak.png" alt="Vugrinšćak Menu" onclick="openViewer(this.src)">
+            <div class="hint">👆 Click to view full size</div>
         </div>
         <div id="breza" class="menu-content">
-            <div class="img-magnifier-container">
-                <img id="breza-img" src="https://cdn.hrva.cc/gableci/breza.png" alt="Breza Menu">
-            </div>
-            <div class="zoom-hint">🔍 Hover over the image to magnify</div>
+            <img src="https://cdn.hrva.cc/gableci/breza.png" alt="Breza Menu" onclick="openViewer(this.src)">
+            <div class="hint">👆 Click to view full size</div>
         </div>
+    </div>
+</div>
+
+<!-- Full screen viewer -->
+<div id="viewer" class="viewer">
+    <button class="close-btn" onclick="closeViewer()">✕</button>
+    <div class="viewer-content">
+        <img id="viewer-img" src="" alt="">
     </div>
 </div>
 
@@ -275,90 +311,34 @@
         event.target.classList.add('active');
     }
 
-    function magnify(imgID, zoom) {
-        var img, glass, w, h, bw;
-        img = document.getElementById(imgID);
+    function openViewer(imgSrc) {
+        const viewer = document.getElementById('viewer');
+        const viewerImg = document.getElementById('viewer-img');
         
-        if (!img) return;
-        
-        // Remove any existing magnifier glass
-        var existingGlass = img.parentElement.querySelector('.img-magnifier-glass');
-        if (existingGlass) {
-            existingGlass.remove();
-        }
-        
-        // Create magnifier glass
-        glass = document.createElement("DIV");
-        glass.setAttribute("class", "img-magnifier-glass");
-        
-        // Insert magnifier glass
-        img.parentElement.insertBefore(glass, img);
-        
-        // Set background properties for the magnifier glass
-        glass.style.backgroundImage = "url('" + img.src + "')";
-        glass.style.backgroundRepeat = "no-repeat";
-        glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
-        bw = 3;
-        w = glass.offsetWidth / 2;
-        h = glass.offsetHeight / 2;
-        
-        // Execute a function when someone moves the magnifier glass over the image
-        glass.addEventListener("mousemove", moveMagnifier);
-        img.addEventListener("mousemove", moveMagnifier);
-        
-        // Also for touch screens
-        glass.addEventListener("touchmove", moveMagnifier);
-        img.addEventListener("touchmove", moveMagnifier);
-        
-        function moveMagnifier(e) {
-            var pos, x, y;
-            // Prevent any other actions that may occur when moving over the image
-            e.preventDefault();
-            
-            // Get the cursor's x and y positions
-            pos = getCursorPos(e);
-            x = pos.x;
-            y = pos.y;
-            
-            // Prevent the magnifier glass from being positioned outside the image
-            if (x > img.width - (w / zoom)) { x = img.width - (w / zoom); }
-            if (x < w / zoom) { x = w / zoom; }
-            if (y > img.height - (h / zoom)) { y = img.height - (h / zoom); }
-            if (y < h / zoom) { y = h / zoom; }
-            
-            // Set the position of the magnifier glass
-            glass.style.left = (x - w) + "px";
-            glass.style.top = (y - h) + "px";
-            
-            // Display what the magnifier glass "sees"
-            glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
-        }
-        
-        function getCursorPos(e) {
-            var a, x = 0, y = 0;
-            e = e || window.event;
-            
-            // Get the x and y positions of the image
-            a = img.getBoundingClientRect();
-            
-            // Calculate the cursor's x and y coordinates, relative to the image
-            x = e.pageX - a.left;
-            y = e.pageY - a.top;
-            
-            // Consider any page scrolling
-            x = x - window.pageXOffset;
-            y = y - window.pageYOffset;
-            
-            return {x : x, y : y};
-        }
+        viewerImg.src = imgSrc;
+        viewer.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
 
-    // Initialize magnifiers when page loads
-    window.onload = function() {
-        magnify("stadion-img", 2.5);
-        magnify("vugrinscak-img", 2.5);
-        magnify("breza-img", 2.5);
-    };
+    function closeViewer() {
+        const viewer = document.getElementById('viewer');
+        viewer.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close on background click
+    document.getElementById('viewer').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeViewer();
+        }
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeViewer();
+        }
+    });
 </script>
 </body>
 </html>
