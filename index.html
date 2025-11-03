@@ -2,7 +2,7 @@
 <html lang="hr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gableci - Jelovnici</title>
 
     <!-- Inline SVG Favicon -->
@@ -106,87 +106,43 @@
             display: block;
         }
 
-        .menu-content img {
+        /* Image magnifier container */
+        .img-magnifier-container {
+            position: relative;
+            display: inline-block;
+            cursor: crosshair;
+        }
+
+        .img-magnifier-container img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: block;
         }
 
-        /* Lightbox Styles */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            overflow: auto;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .lightbox-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .lightbox-content img {
-            max-width: 95%;
-            max-height: 95vh;
-            object-fit: contain;
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            touch-action: pan-x pan-y pinch-zoom;
-        }
-
-        .close-lightbox {
-            position: fixed;
-            top: 20px;
-            right: 35px;
-            color: white;
-            font-size: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 1000;
-            transition: color 0.3s ease;
-            user-select: none;
-        }
-
-        .close-lightbox:hover {
-            color: #bbb;
-        }
-
-        /* Zoom hint for mobile */
-        .zoom-hint {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            z-index: 1001;
-            animation: fadeOut 3s ease forwards;
+        /* Magnifying glass */
+        .img-magnifier-glass {
+            position: absolute;
+            border: 3px solid #4a90e2;
+            border-radius: 50%;
+            cursor: none;
+            width: 150px;
+            height: 150px;
+            background-repeat: no-repeat;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             pointer-events: none;
+            z-index: 100;
         }
 
-        @keyframes fadeOut {
-            0%, 70% { opacity: 1; }
-            100% { opacity: 0; }
+        .zoom-hint {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(74, 144, 226, 0.1);
+            border-radius: 8px;
+            color: #357abd;
+            font-size: 14px;
+            font-weight: 500;
         }
 
         footer {
@@ -235,19 +191,9 @@
                 padding: 15px;
             }
 
-            .close-lightbox {
-                top: 10px;
-                right: 20px;
-                font-size: 40px;
-            }
-
-            .lightbox-content {
-                padding: 10px;
-            }
-
-            .lightbox-content img {
-                max-width: 100%;
-                max-height: 90vh;
+            .img-magnifier-glass {
+                width: 100px;
+                height: 100px;
             }
         }
 
@@ -263,6 +209,12 @@
             .tab {
                 padding: 10px 20px;
                 font-size: 0.9rem;
+            }
+
+            .img-magnifier-glass {
+                width: 80px;
+                height: 80px;
+                border-width: 2px;
             }
 
             footer {
@@ -287,22 +239,23 @@
 
     <div class="content">
         <div id="stadion" class="menu-content active">
-            <img src="https://cdn.hrva.cc/gableci/stadion.jpg" alt="Stadion Menu" onclick="openLightbox(this)">
+            <div class="img-magnifier-container">
+                <img id="stadion-img" src="https://cdn.hrva.cc/gableci/stadion.jpg" alt="Stadion Menu">
+            </div>
+            <div class="zoom-hint">🔍 Hover over the image to magnify</div>
         </div>
         <div id="vugrinscak" class="menu-content">
-            <img src="https://cdn.hrva.cc/gableci/vugrinscak.jpg" alt="Vugrinšćak Menu" onclick="openLightbox(this)">
+            <div class="img-magnifier-container">
+                <img id="vugrinscak-img" src="https://cdn.hrva.cc/gableci/vugrinscak.png" alt="Vugrinšćak Menu">
+            </div>
+            <div class="zoom-hint">🔍 Hover over the image to magnify</div>
         </div>
         <div id="breza" class="menu-content">
-            <img src="https://cdn.hrva.cc/gableci/breza.jpg" alt="Breza Menu" onclick="openLightbox(this)">
+            <div class="img-magnifier-container">
+                <img id="breza-img" src="https://cdn.hrva.cc/gableci/breza.png" alt="Breza Menu">
+            </div>
+            <div class="zoom-hint">🔍 Hover over the image to magnify</div>
         </div>
-    </div>
-</div>
-
-<!-- Lightbox Modal -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-    <span class="close-lightbox" onclick="closeLightbox(event)">&times;</span>
-    <div class="lightbox-content">
-        <img id="lightbox-img" src="" alt="">
     </div>
 </div>
 
@@ -322,75 +275,90 @@
         event.target.classList.add('active');
     }
 
-    function setViewport(maxScale, userScalable) {
-        let viewport = document.querySelector('meta[name=viewport]');
-        if (viewport) {
-            viewport.setAttribute('content',
-                `width=device-width, initial-scale=1.0, maximum-scale=${maxScale}, user-scalable=${userScalable}`
-            );
+    function magnify(imgID, zoom) {
+        var img, glass, w, h, bw;
+        img = document.getElementById(imgID);
+        
+        if (!img) return;
+        
+        // Remove any existing magnifier glass
+        var existingGlass = img.parentElement.querySelector('.img-magnifier-glass');
+        if (existingGlass) {
+            existingGlass.remove();
+        }
+        
+        // Create magnifier glass
+        glass = document.createElement("DIV");
+        glass.setAttribute("class", "img-magnifier-glass");
+        
+        // Insert magnifier glass
+        img.parentElement.insertBefore(glass, img);
+        
+        // Set background properties for the magnifier glass
+        glass.style.backgroundImage = "url('" + img.src + "')";
+        glass.style.backgroundRepeat = "no-repeat";
+        glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+        bw = 3;
+        w = glass.offsetWidth / 2;
+        h = glass.offsetHeight / 2;
+        
+        // Execute a function when someone moves the magnifier glass over the image
+        glass.addEventListener("mousemove", moveMagnifier);
+        img.addEventListener("mousemove", moveMagnifier);
+        
+        // Also for touch screens
+        glass.addEventListener("touchmove", moveMagnifier);
+        img.addEventListener("touchmove", moveMagnifier);
+        
+        function moveMagnifier(e) {
+            var pos, x, y;
+            // Prevent any other actions that may occur when moving over the image
+            e.preventDefault();
+            
+            // Get the cursor's x and y positions
+            pos = getCursorPos(e);
+            x = pos.x;
+            y = pos.y;
+            
+            // Prevent the magnifier glass from being positioned outside the image
+            if (x > img.width - (w / zoom)) { x = img.width - (w / zoom); }
+            if (x < w / zoom) { x = w / zoom; }
+            if (y > img.height - (h / zoom)) { y = img.height - (h / zoom); }
+            if (y < h / zoom) { y = h / zoom; }
+            
+            // Set the position of the magnifier glass
+            glass.style.left = (x - w) + "px";
+            glass.style.top = (y - h) + "px";
+            
+            // Display what the magnifier glass "sees"
+            glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+        }
+        
+        function getCursorPos(e) {
+            var a, x = 0, y = 0;
+            e = e || window.event;
+            
+            // Get the x and y positions of the image
+            a = img.getBoundingClientRect();
+            
+            // Calculate the cursor's x and y coordinates, relative to the image
+            x = e.pageX - a.left;
+            y = e.pageY - a.top;
+            
+            // Consider any page scrolling
+            x = x - window.pageXOffset;
+            y = y - window.pageYOffset;
+            
+            return {x : x, y : y};
         }
     }
 
-    function openLightbox(imgElement) {
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        // Enable zooming on mobile
-        setViewport('10.0', 'yes');
-
-        lightbox.style.display = 'block';
-        lightboxImg.src = imgElement.src;
-        lightboxImg.alt = imgElement.alt;
-
-        document.body.style.overflow = 'hidden';
-
-        // Show zoom hint on mobile
-        if (window.innerWidth <= 768) {
-            showZoomHint();
-        }
-    }
-
-    function closeLightbox(event) {
-        const lightbox = document.getElementById('lightbox');
-
-        if (event.target === lightbox || event.target.className === 'close-lightbox') {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
-
-            // Disable zooming when lightbox closes
-            setViewport('1.0', 'no');
-        }
-    }
-
-    function showZoomHint() {
-        // Check if hint already shown in this session
-        if (sessionStorage.getItem('zoomHintShown')) {
-            return;
-        }
-
-        const hint = document.createElement('div');
-        hint.className = 'zoom-hint';
-        hint.textContent = '🔍 Pinch to zoom';
-        document.body.appendChild(hint);
-
-        setTimeout(() => {
-            hint.remove();
-        }, 3000);
-
-        sessionStorage.setItem('zoomHintShown', 'true');
-    }
-
-    // Close lightbox with Escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.style.display === 'block') {
-                lightbox.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                setViewport('1.0', 'no');
-            }
-        }
-    });
+    // Initialize magnifiers when page loads
+    window.onload = function() {
+        magnify("stadion-img", 2.5);
+        magnify("vugrinscak-img", 2.5);
+        magnify("breza-img", 2.5);
+    };
 </script>
 </body>
 </html>
