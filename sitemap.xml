@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://gableci.hrva.cc/</loc>
+        <lastmod>2025-11-11</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://gableci.hrva.cc/#stadion</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://gableci.hrva.cc/#vugrinscak</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://gableci.hrva.cc/#breza</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+    </url>
+</urlset>
