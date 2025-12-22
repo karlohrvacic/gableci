@@ -395,11 +395,39 @@
                 display: none;
             }
         }
+
+        .holiday-banner {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 12px 16px;
+            margin: 10px 20px 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 600px) {
+            .holiday-banner {
+                margin: 10px 10px 0;
+                font-size: 0.9rem;
+            }
+        }
+
     </style>
 </head>
 <body>
 <!-- Skip to content for keyboard navigation -->
 <a href="#main-content" class="skip-link">Preskoči na sadržaj</a>
+
+<div class="holiday-banner" role="status" aria-live="polite">
+    <p>
+        Dragi prijatelji, od 29.12.2025. do 7.1.2026. gableci neće biti ažurirani, molimo vas da kuhate doma.
+        Vama i vašim obiteljima želim sretan i blagoslovljen Božić i sretnu novu 2026. Vidimo se dogodine.
+        Vaš Karlo.
+    </p>
+</div>
 
 <div class="container">
     <header>
@@ -456,7 +484,7 @@
                  role="tabpanel"
                  aria-labelledby="tab-vugrinscak"
                  aria-hidden="true">
-            <img src="https://cdn.hrva.cc/gableci/vugrinscak.jpg"
+            <img src="https://cdn.hrva.cc/gableci/vugrinscak.png"
                  alt="Dnevni jelovnik Gableci Vugrinšćak - današnja ponuda jela i napitaka"
                  width="800"
                  height="1200"
@@ -471,7 +499,7 @@
                  role="tabpanel"
                  aria-labelledby="tab-breza"
                  aria-hidden="true">
-            <img src="https://cdn.hrva.cc/gableci/breza.jpg"
+            <img src="https://cdn.hrva.cc/gableci/breza.png"
                  alt="Dnevni jelovnik Gableci Breza - današnja ponuda jela i napitaka"
                  width="800"
                  height="1200"
