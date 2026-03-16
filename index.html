@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary SEO Meta Tags -->
-    <title>Gableci - Dnevni Jelovnici Samobor</title>
-    <meta name="description" content="Pregledajte dnevne jelovnike Gableci restorana u Samoboru. Svježe informacije o dnevnoj ponudi jela.">
-    <meta name="keywords" content="Gableci, jelovnik Zagreb, dnevni meni, Samobor">
+    <title>Gableci Samobor - Svi Dnevni Jelovnici na Jednom Mjestu | Poslovni Ručak</title>
+    <meta name="description" content="Pronađite sve dnevne jelovnike samoborskih restorana na jednom mjestu! Gableci je besplatna platforma koja prikazuje današnje menije iz restorana Stadion, Vugrinšćak i Breza. Usporedite cijene, jela i odaberite gdje ćete na gablec.">
+    <meta name="keywords" content="gableci, gablec, dnevni jelovnik samobor, gdje na ručak samobor, poslovni ručak, svi meniji samobor, usporedba jelovnika, restoran stadion, vugrinscak meni, breza jelovnik, radnički ručak, marenda samobor, dnevna ponuda hrane">
     <meta name="author" content="HrvaLabs.net">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://gableci.hrva.cc/">
@@ -15,22 +15,31 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gableci.hrva.cc/">
-    <meta property="og:title" content="Gableci - Dnevni Jelovnici Zagreb">
-    <meta property="og:description" content="Pregledajte dnevne jelovnike Gableci restorana - Samobor.">
+    <meta property="og:title" content="Gableci - Svi Dnevni Meniji Samobora na Jednom Mjestu">
+    <meta property="og:description" content="Besplatna platforma za pregled svih dnevnih jelovnika u Samoboru. Usporedite menije restorana Stadion, Vugrinšćak i Breza i odlučite gdje ćete na gablec!">
     <meta property="og:image" content="https://cdn.hrva.cc/gableci/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="hr_HR">
-    <meta property="og:site_name" content="Gableci">
+    <meta property="og:site_name" content="Gableci - Jelovnici Samobor">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Gableci - Dnevni Jelovnici">
-    <meta name="twitter:description" content="Dnevni jelovnici iz tri zagrebačke lokacije - Stadion, Vugrinšćak, Breza.">
+    <meta name="twitter:title" content="Gableci - Svi Meniji Samobora na Jednom Mjestu">
+    <meta name="twitter:description" content="Pregledajte sve dnevne jelovnike samoborskih restorana. Usporedite ponude i odaberite gdje na ručak!">
     <meta name="twitter:image" content="https://cdn.hrva.cc/gableci/og-image.jpg">
 
     <!-- Mobile & PWA -->
     <meta name="theme-color" content="#4a90e2">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Gableci">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="https://cdn.hrva.cc/gableci/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.hrva.cc/gableci/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://cdn.hrva.cc/gableci/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://cdn.hrva.cc/gableci/apple-touch-icon-120x120.png">
 
     <!-- Performance Optimization -->
     <link rel="preconnect" href="https://cdn.hrva.cc" crossorigin>
@@ -39,40 +48,78 @@
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%234a90e2' rx='20'/><text x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial, sans-serif'>G</text></svg>">
 
-    <!-- Structured Data - Restaurant Schema -->
+    <!-- Structured Data - WebApplication Schema -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "Restaurant",
+            "@type": "WebApplication",
             "name": "Gableci",
-            "description": "Gableci dnevni jelovnici na više lokacija u Samoboru",
+            "description": "Gableci je besplatna online platforma koja na jednom mjestu prikazuje dnevne jelovnike različitih restorana u Samoboru. Pregledajte menije, usporedite cijene i jela te odaberite gdje ćete danas na gablec - tradicionalni hrvatski poslovni ručak.",
             "url": "https://gableci.hrva.cc/",
-            "servesCuisine": "Croatian",
-            "priceRange": "$$",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Samobor",
-                "addressCountry": "HR"
+            "applicationCategory": "FoodService",
+            "operatingSystem": "Any",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR",
+                "description": "Besplatan pristup svim dnevnim jelovnicima"
             },
-            "hasMenu": {
-                "@type": "Menu",
-                "name": "Dnevni Jelovnik",
-                "description": "Daily menu available at all locations"
+            "author": {
+                "@type": "Organization",
+                "name": "HrvaLabs.net",
+                "url": "https://hrva.cc"
             },
-            "location": [
+            "areaServed": {
+                "@type": "City",
+                "name": "Samobor",
+                "containedInPlace": {
+                    "@type": "AdministrativeArea",
+                    "name": "Zagrebačka županija"
+                }
+            }
+        }
+    </script>
+    
+    <!-- ItemList Schema for Restaurant Menus -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "Dnevni Jelovnici Samobor",
+            "description": "Lista svih dostupnih dnevnih jelovnika restorana u Samoboru",
+            "numberOfItems": 3,
+            "itemListElement": [
                 {
-                    "@type": "Place",
-                    "name": "Gableci Stadion"
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Restoran Stadion - Dnevni Jelovnik",
+                    "url": "https://gableci.hrva.cc/#stadion"
                 },
                 {
-                    "@type": "Place",
-                    "name": "Gableci Vugrinšćak"
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Restoran Vugrinšćak - Dnevni Jelovnik",
+                    "url": "https://gableci.hrva.cc/#vugrinscak"
                 },
                 {
-                    "@type": "Place",
-                    "name": "Gableci Breza"
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Restoran Breza - Dnevni Jelovnik",
+                    "url": "https://gableci.hrva.cc/#breza"
                 }
             ]
+        }
+    </script>
+    
+    <!-- WebSite Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Gableci - Dnevni Jelovnici Samobor",
+            "url": "https://gableci.hrva.cc/",
+            "description": "Besplatna platforma za pregled svih dnevnih jelovnika u Samoboru. Svi restorani na jednom mjestu.",
+            "inLanguage": "hr-HR"
         }
     </script>
 
@@ -396,6 +443,210 @@
             }
         }
 
+        /* Header description */
+        .header-description {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 15px auto 0;
+            line-height: 1.6;
+        }
+
+        /* SEO Content Section */
+        .seo-content {
+            background: var(--color-white);
+            border-radius: 16px;
+            padding: 40px 30px;
+            margin: 20px auto;
+            max-width: 1200px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .seo-container h2 {
+            color: var(--color-primary);
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .seo-container h3 {
+            color: var(--color-primary-dark);
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            margin: 25px 0 15px;
+        }
+
+        .seo-container h4 {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .seo-container p {
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-card p {
+            margin-bottom: 0;
+            color: var(--color-text-muted);
+        }
+
+        /* Social Sharing Section */
+        .social-sharing {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .share-container {
+            text-align: center;
+        }
+
+        .share-text {
+            color: var(--color-white);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all var(--transition-speed) ease;
+            color: var(--color-white);
+        }
+
+        .share-btn.facebook {
+            background: #1877f2;
+        }
+
+        .share-btn.twitter {
+            background: #000;
+        }
+
+        .share-btn.whatsapp {
+            background: #25d366;
+        }
+
+        .share-btn.email {
+            background: #ea4335;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-btn);
+            opacity: 0.9;
+        }
+
+        .share-btn:focus {
+            outline: 3px solid var(--color-white);
+            outline-offset: 3px;
+        }
+
+        /* Enhanced Footer */
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background var(--transition-speed) ease;
+        }
+
+        .footer-links a:hover,
+        .footer-links a:focus {
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .footer-credits {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .seo-content {
+                padding: 25px 20px;
+                margin: 15px 10px;
+            }
+
+            .social-sharing {
+                padding: 20px 15px;
+                margin: 15px 10px;
+            }
+
+            .share-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .footer-links {
+                gap: 10px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -404,8 +655,9 @@
 
 <div class="container">
     <header>
-        <h1>Gableci</h1>
-        <p class="subtitle">Dnevni jelovnici</p>
+        <h1>Gableci Samobor - Svi Dnevni Jelovnici na Jednom Mjestu</h1>
+        <p class="subtitle">Besplatna platforma za pregled menija samoborskih restorana</p>
+        <p class="header-description">Dobrodošli na Gableci - vašu centralnu stranicu za sve dnevne jelovnike u Samoboru! Ovdje na jednom mjestu možete pregledati i usporediti današnje menije iz najpopularnijih samoborskih restorana: Stadion, Vugrinšćak i Breza. Više ne morate obilaziti svaki restoran pojedinačno - jednostavno pregledajte ponude i odlučite gdje ćete danas na gablec!</p>
     </header>
 
     <nav aria-label="Odabir lokacije">
@@ -502,8 +754,80 @@
     </div>
 </div>
 
+<!-- SEO Content Section -->
+<section class="seo-content" aria-label="Informacije o Gableci platformi">
+    <div class="seo-container">
+        <h2>Što je Gableci i zašto koristiti ovu platformu?</h2>
+        <p>Gableci je besplatna online platforma koja vam omogućuje da na jednom mjestu pregledate sve dnevne jelovnike popularnih restorana u Samoboru. Naziv "gablec" dolazi od njemačke riječi i označava tradicionalni hrvatski poslovni ručak - topli obrok koji radnici i zaposlenici konzumiraju tijekom radnog vremena. Naša misija je jednostavna: uštedjeti vam vrijeme i pomoći vam da brzo pronađete gdje ćete danas jesti.</p>
+        
+        <h3>Restorani čije jelovnike prikazujemo</h3>
+        <p><strong>Restoran Stadion</strong> - Popularan restoran smješten u blizini sportskog stadiona u Samoboru. Poznat po obilnim porcijama i tradicionalnim jelima hrvatske kuhinje. Idealan izbor za one koji cijene domaću hranu po pristupačnim cijenama.</p>
+        <p><strong>Restoran Vugrinšćak</strong> - Omiljeno mjesto za ručak među lokalnim stanovništvom četvrti Vugrinšćak. Nudi raznovrsne dnevne menije s naglaskom na sezonske sastojke i domaće recepte koji podsjećaju na bakinu kuhinju.</p>
+        <p><strong>Restoran Breza</strong> - Restoran u naselju Breza koji se ističe obiteljskom atmosferom i velikodušnim porcijama. Savršen za sve koji traže kvalitetan obrok u ugodnom ambijentu.</p>
+        
+        <h3>Kako funkcionira Gableci platforma?</h3>
+        <p>Svako jutro automatski prikupljamo i ažuriramo dnevne jelovnike iz svih prikazanih restorana. Vi jednostavno posjetite našu stranicu, pregledate ponude svakog restorana klikom na odgovarajući tab (Stadion, Vugrinšćak ili Breza), usporedite jela i cijene, te odlučite gdje ćete danas na gablec. Slike jelovnika možete uvećati klikom za lakše čitanje. Platforma je potpuno besplatna i ne zahtijeva registraciju.</p>
+        
+        <h3>Što je gablec i zašto je važan?</h3>
+        <p>Gablec je više od običnog obroka - to je tradicija! U Hrvatskoj, posebno u kontinentalnom dijelu, gablec označava topli ručak koji se jede tijekom radnog vremena, obično između 10 i 14 sati. Tipični gablec uključuje juhu, glavno jelo s prilogom, salatu, a ponekad i desert. Za mnoge radnike i zaposlenike, gablec je najvažniji obrok dana i prilika za kratki predah od posla.</p>
+        
+        <div class="features-grid">
+            <article class="feature-card">
+                <h4>Sve na Jednom Mjestu</h4>
+                <p>Pregledajte jelovnike više restorana bez potrebe za obilaženjem</p>
+            </article>
+            <article class="feature-card">
+                <h4>Uvijek Ažurirano</h4>
+                <p>Dnevni meniji se automatski osvježavaju svako jutro</p>
+            </article>
+            <article class="feature-card">
+                <h4>Potpuno Besplatno</h4>
+                <p>Bez registracije, bez pretplate - jednostavno pregledajte i idite jesti</p>
+            </article>
+            <article class="feature-card">
+                <h4>Usporedite Ponude</h4>
+                <p>Lako usporedite cijene i jela između različitih restorana</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Social Sharing Section -->
+<section class="social-sharing" aria-label="Podijelite s prijateljima">
+    <div class="share-container">
+        <p class="share-text">Podijelite Gableci s kolegama i prijateljima:</p>
+        <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://gableci.hrva.cc/" target="_blank" rel="noopener noreferrer" class="share-btn facebook" aria-label="Podijeli na Facebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Facebook
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=https://gableci.hrva.cc/&text=Svi%20dnevni%20jelovnici%20Samobora%20na%20jednom%20mjestu!%20Pogledajte%20gdje%20danas%20na%20gablec" target="_blank" rel="noopener noreferrer" class="share-btn twitter" aria-label="Podijeli na X (Twitter)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                X
+            </a>
+            <a href="https://wa.me/?text=Svi%20dnevni%20jelovnici%20Samobora%20na%20jednom%20mjestu!%20Pogledaj%20gdje%20danas%20na%20gablec%20%F0%9F%8D%BD%EF%B8%8F%20https://gableci.hrva.cc/" target="_blank" rel="noopener noreferrer" class="share-btn whatsapp" aria-label="Podijeli na WhatsApp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+            </a>
+            <a href="mailto:?subject=Gdje%20danas%20na%20gablec%3F&body=Pogledaj%20sve%20dnevne%20jelovnike%20samoborskih%20restorana%20na%20jednom%20mjestu!%0A%0Ahttps://gableci.hrva.cc/" class="share-btn email" aria-label="Podijeli putem emaila">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                Email
+            </a>
+        </div>
+    </div>
+</section>
+
 <footer role="contentinfo">
-    <p>Powered By <a href="https://hrva.cc" target="_blank" rel="noopener noreferrer">HrvaLabs.net</a> and Sponsored by <a href="https://greenbytehub.hr" target="_blank" rel="noopener noreferrer">GreenByteHub</a></p>
+    <div class="footer-content">
+        <p class="footer-brand">Gableci - Svi dnevni jelovnici Samobora na jednom mjestu</p>
+        <nav class="footer-links" aria-label="Brze poveznice">
+            <a href="#stadion">Restoran Stadion</a>
+            <a href="#vugrinscak">Restoran Vugrinšćak</a>
+            <a href="#breza">Restoran Breza</a>
+        </nav>
+        <p class="footer-credits">Powered By <a href="https://hrva.cc" target="_blank" rel="noopener noreferrer">HrvaLabs.net</a> and Sponsored by <a href="https://greenbytehub.hr" target="_blank" rel="noopener noreferrer">GreenByteHub</a></p>
+        <p class="footer-copyright">© 2024-2026 Gableci. Sva prava pridržana. Ovo je informativna platforma - nismo povezani s prikazanim restoranima.</p>
+    </div>
 </footer>
 
 <script>
