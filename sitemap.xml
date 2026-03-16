@@ -1,24 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://gableci.hrva.cc/</loc>
-        <lastmod>2025-11-11</lastmod>
+        <lastmod>2026-03-16</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://cdn.hrva.cc/gableci/og-image.jpg</image:loc>
+            <image:title>Gableci Samobor - Dnevni Jelovnici</image:title>
+            <image:caption>Pregledajte dnevne jelovnike Gableci restorana na tri lokacije u Samoboru</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://gableci.hrva.cc/#stadion</loc>
+        <lastmod>2026-03-16</lastmod>
         <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://cdn.hrva.cc/gableci/stadion.jpg</image:loc>
+            <image:title>Gableci Stadion - Dnevni Jelovnik</image:title>
+            <image:caption>Današnji dnevni jelovnik restorana Gableci Stadion u Samoboru</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://gableci.hrva.cc/#vugrinscak</loc>
+        <lastmod>2026-03-16</lastmod>
         <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://cdn.hrva.cc/gableci/vugrinscak.jpg</image:loc>
+            <image:title>Gableci Vugrinscak - Dnevni Jelovnik</image:title>
+            <image:caption>Današnji dnevni jelovnik restorana Gableci Vugrinšćak u Samoboru</image:caption>
+        </image:image>
     </url>
     <url>
         <loc>https://gableci.hrva.cc/#breza</loc>
+        <lastmod>2026-03-16</lastmod>
         <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://cdn.hrva.cc/gableci/breza.jpg</image:loc>
+            <image:title>Gableci Breza - Dnevni Jelovnik</image:title>
+            <image:caption>Današnji dnevni jelovnik restorana Gableci Breza u Samoboru</image:caption>
+        </image:image>
     </url>
 </urlset>
