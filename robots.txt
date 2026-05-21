@@ -1,18 +1,8 @@
 User-agent: *
 Allow: /
 
-# Block AI scrapers (optional but recommended 2025)
-User-agent: GPTBot
-Disallow: /
-
+# Block AI training scrapers (not search bots)
 User-agent: CCBot
 Disallow: /
 
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: Claude-Web
-Disallow: /
-
-# Point to your sitemap
 Sitemap: https://gableci.hrva.cc/sitemap.xml
