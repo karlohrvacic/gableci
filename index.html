@@ -51,7 +51,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.hrva.cc" crossorigin>
-    <link rel="dns-prefetch" href="https://cdn.hrva.cc">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
           rel="stylesheet">
 
@@ -465,29 +464,6 @@
             margin-bottom: 10px;
             text-align: center;
         }
-        .per-rest-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-        .per-rest-tab {
-            flex: 1;
-            padding: 7px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(184, 137, 42, 0.2);
-            background: transparent;
-            color: var(--text-muted);
-            font-family: inherit;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--t);
-        }
-        .per-rest-tab.active {
-            background: rgba(184, 137, 42, 0.1);
-            border-color: var(--gold);
-            color: var(--gold);
-        }
         .per-rest-cards {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -537,7 +513,11 @@
             display: flex;
             gap: 8px;
             padding: 16px 24px 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
         }
+        .week-strip::-webkit-scrollbar { display: none; }
 
         .day-chip {
             flex: 1;
@@ -552,6 +532,10 @@
         }
 
         .day-chip:hover:not(.day-chip-closed) {
+            border-color: var(--accent);
+        }
+
+        .day-chip.today:not(.active) {
             border-color: var(--accent);
         }
 
@@ -798,26 +782,53 @@
 
         .faq-item {
             border-bottom: 1px solid var(--card-border);
-            padding: 16px 0;
         }
 
         .faq-item:last-child {
             border-bottom: none;
         }
 
+        .faq-item summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .faq-item summary::-webkit-details-marker { display: none; }
+
+        .faq-item summary::after {
+            content: '+';
+            flex-shrink: 0;
+            font-size: 22px;
+            font-weight: 300;
+            line-height: 1;
+            color: var(--accent);
+            transition: transform var(--t);
+        }
+
+        details[open].faq-item summary::after {
+            content: '−';
+        }
+
         .faq-q {
             font-size: 15px;
             font-weight: 600;
             color: var(--text-dark);
-            margin-bottom: 6px;
             line-height: 1.4;
+            margin: 0;
         }
 
         .faq-a {
             font-size: 14px;
             color: var(--text-dark-muted);
             line-height: 1.72;
-            margin: 0;
+            margin: 0 0 16px;
         }
 
         /* ===== SHARE SECTION ===== */
@@ -977,13 +988,8 @@
             }
         }
 
-        @keyframes imageFade {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* ===== RESPONSIVE ===== */
@@ -1076,6 +1082,17 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
+        }
+
+        /* ===== LOADING SPINNER ===== */
+        .loading-spinner {
+            width: 28px;
+            height: 28px;
+            border: 2px solid rgba(192, 78, 28, 0.2);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+            margin: 0 auto 14px;
         }
 
         /* ===== PHOTO LIGHTBOX ===== */
@@ -1237,7 +1254,7 @@
         <button class="tab-btn active"
                 role="tab"
                 aria-selected="true"
-                aria-controls="stadion"
+                aria-controls="menu-card"
                 id="tab-stadion"
                 data-restaurant="stadion"
                 onclick="showMenu('stadion')">
@@ -1246,7 +1263,7 @@
         <button class="tab-btn"
                 role="tab"
                 aria-selected="false"
-                aria-controls="vugrinscak"
+                aria-controls="menu-card"
                 id="tab-vugrinscak"
                 data-restaurant="vugrinscak"
                 onclick="showMenu('vugrinscak')">
@@ -1255,7 +1272,7 @@
         <button class="tab-btn"
                 role="tab"
                 aria-selected="false"
-                aria-controls="breza"
+                aria-controls="menu-card"
                 id="tab-breza"
                 data-restaurant="breza"
                 onclick="showMenu('breza')">
@@ -1265,7 +1282,10 @@
 </nav>
 
 <main id="main-content" class="content-area">
-    <div id="loading-state" class="loading-state">Učitavam jelovnike…</div>
+    <div id="loading-state" class="loading-state">
+        <div class="loading-spinner"></div>
+        Učitavam jelovnike…
+    </div>
     <div id="error-state" class="error-state" style="display:none">
         <p>Jelovnici trenutno nisu dostupni. Pokušajte osvježiti stranicu.</p>
         <p style="margin-top:10px;font-size:12px;opacity:0.7">Originalne fotografije:</p>
@@ -1359,27 +1379,27 @@
         <div class="faq-section" aria-label="Često postavljana pitanja">
             <p class="faq-eyebrow">Često postavljana pitanja</p>
 
-            <div class="faq-item">
-                <p class="faq-q">Što je gablec?</p>
+            <details class="faq-item">
+                <summary class="faq-q">Što je gablec?</summary>
                 <p class="faq-a">Gablec je tradicionalni hrvatski topli ručak konzumiran tijekom radnog vremena, obično
                     između 10 i 14 sati. Naziv dolazi od njemačke riječi i u kontinentalnoj Hrvatskoj označava poslovni
                     ručak koji uključuje juhu, glavno jelo s prilogom i salatu.</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-q">Koji restorani nude gablece u Samoboru?</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">Koji restorani nude gablece u Samoboru?</summary>
                 <p class="faq-a">Na platformi Gableci pratimo tjedne jelovnike triju samoborskih restorana: Restoran
                     Stadion, Restoran Vugrinšćak i Restoran Breza.</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-q">Kada se ažuriraju jelovnici?</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">Kada se ažuriraju jelovnici?</summary>
                 <p class="faq-a">Jelovnici se ažuriraju tjedno, obično na početku tjedna. Platforma je potpuno besplatna
                     i ne zahtijeva registraciju.</p>
-            </div>
-            <div class="faq-item">
-                <p class="faq-q">Je li gablec platforma besplatan?</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">Je li gablec platforma besplatan?</summary>
                 <p class="faq-a">Da, gableci.hrva.cc je potpuno besplatna platforma. Nema registracije niti plaćanja —
                     jednostavno posjetite stranicu i pregledajte dostupne jelovnike.</p>
-            </div>
+            </details>
         </div>
     </div>
 </section>
@@ -1480,7 +1500,7 @@
     const PICK_LABELS = {
         best: 'Danas preporučujemo',
         healthiest: 'Najzdravije',
-        most_filling: 'Najsitnije',
+        most_filling: 'Najobilnije',
         best_value: 'Najbolja cijena'
     };
     const PER_REST_LABELS = {
@@ -1488,7 +1508,7 @@
         best_weekly: 'Tjedni meni',
         best: 'Preporuka',
         healthiest: 'Najzdravije',
-        most_filling: 'Najsitnije',
+        most_filling: 'Najobilnije',
         best_value: 'Najjeftinije'
     };
     const SOURCE_LABELS = { daily: 'dnevni', weekly: 'tjedni' };
@@ -1514,7 +1534,11 @@
     let _activePerRestTab = null;
 
     function todayISO() {
-        return new Date().toISOString().slice(0, 10);
+        const d = new Date();
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${y}-${m}-${day}`;
     }
 
     function getWeekDays(data) {
@@ -1533,10 +1557,10 @@
     function getDayData(restaurantKey, isoDate) {
         const rest = menuData.restaurants[restaurantKey];
         if (!rest) return null;
-        return (rest.days || []).find(d => {
-            const [y, m, day] = isoDate.split('-');
-            return d.date === `${day}.${m}.${y}`;
-        }) || null;
+        const [y, m, day] = isoDate.split('-');
+        const full = `${day}.${m}.${y}`;
+        const partial = `${day}.${m}.`;
+        return (rest.days || []).find(d => d.date === full || d.date === partial) || null;
     }
 
     function isRestaurantOpen(restaurantKey, isoDate) {
@@ -1575,26 +1599,11 @@
         const section = document.getElementById('per-rest-section');
         if (!perRest || Object.keys(perRest).length === 0) { section.innerHTML = ''; return; }
         _perRestData = perRest;
-        _activePerRestTab = Object.keys(perRest)[0];
+        _activePerRestTab = activeRestaurant in perRest ? activeRestaurant : Object.keys(perRest)[0];
         section.innerHTML = `
-            <div class="per-rest-label">Po restoranu</div>
-            <div class="per-rest-tabs" id="per-rest-tabs"></div>
+            <div class="per-rest-label">Preporuke</div>
             <div class="per-rest-cards" id="per-rest-cards"></div>`;
-        _refreshPerRestTabs();
         _refreshPerRestCards();
-        document.getElementById('per-rest-tabs').addEventListener('click', e => {
-            const btn = e.target.closest('[data-rest]');
-            if (btn) { _activePerRestTab = btn.dataset.rest; _refreshPerRestTabs(); _refreshPerRestCards(); }
-        });
-    }
-
-    function _refreshPerRestTabs() {
-        const el = document.getElementById('per-rest-tabs');
-        if (!el || !_perRestData) return;
-        el.innerHTML = Object.keys(_perRestData).map(k =>
-            `<button class="per-rest-tab${k === _activePerRestTab ? ' active' : ''}" data-rest="${k}">
-                ${escHtml(RESTAURANT_NAMES[k] || k)}</button>`
-        ).join('');
     }
 
     function _refreshPerRestCards() {
@@ -1623,8 +1632,15 @@
         if (e.key === 'Escape') closeMenuPhoto();
     }
 
+    function _imgUrlFor(rest) {
+        const base = MENU_IMAGES[rest];
+        if (!base) return null;
+        const v = (menuData && menuData.week) || new Date().toISOString().slice(0, 7);
+        return base + '?v=' + encodeURIComponent(v);
+    }
+
     function openMenuPhotoFor(rest) {
-        const imgUrl = MENU_IMAGES[rest];
+        const imgUrl = _imgUrlFor(rest);
         if (!imgUrl) return;
         document.getElementById('photo-modal-img').src = imgUrl;
         document.getElementById('photo-modal').style.display = 'flex';
@@ -1632,7 +1648,7 @@
     }
 
     function openMenuPhoto() {
-        const imgUrl = MENU_IMAGES[activeRestaurant];
+        const imgUrl = _imgUrlFor(activeRestaurant);
         if (!imgUrl) return;
         document.getElementById('photo-modal-img').src = imgUrl;
         document.getElementById('photo-modal').style.display = 'flex';
@@ -1656,7 +1672,8 @@
             const open = isRestaurantOpen(activeRestaurant, isoDate);
             const isActive = isoDate === activeDay;
             const [, m, d] = isoDate.split('-');
-            return `<div class="day-chip${isActive ? ' active' : ''}${!open ? ' day-chip-closed' : ''}"
+            const isToday = isoDate === todayISO();
+        return `<div class="day-chip${isActive ? ' active' : ''}${isToday ? ' today' : ''}${!open ? ' day-chip-closed' : ''}"
                          data-date="${isoDate}"
                          onclick="${open ? `selectDay('${isoDate}')` : ''}"
                          aria-label="${DAY_ABBR[i]} ${parseInt(d)}.${m}${open ? '' : ' — zatvoreno'}"
@@ -1731,6 +1748,11 @@
 
         if (history.pushState) history.pushState(null, null, '#' + restaurantKey);
         _updatePhotoBtn();
+
+        if (_perRestData && restaurantKey in _perRestData) {
+            _activePerRestTab = restaurantKey;
+            _refreshPerRestCards();
+        }
 
         if (!menuData) return;
         const days = getWeekDays(menuData);
