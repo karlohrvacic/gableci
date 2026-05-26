@@ -7,7 +7,7 @@
     <!-- Primary SEO Meta Tags -->
     <title>Gableci Samobor | Jelovnici Stadion, Vugrinšćak, Breza</title>
     <meta name="description"
-          content="Gableci - svi tjedni jelovnici samoborskih restorana na jednom mjestu. Pregledajte menije restorana Stadion, Vugrinšćak i Breza. Gdje na gablec danas? Usporedite ponude i cijene.">
+          content="Tjedni jelovnici restorana Stadion, Vugrinšćak i Breza u Samoboru na jednom mjestu. Gdje na gablec danas? Usporedite menije i cijene. Besplatno, bez registracije.">
     <meta name="keywords"
           content="gableci, gablec, gableci samobor, tjedni jelovnik, dnevni meni samobor, restoran stadion samobor, vugrinscak jelovnik, breza meni, gdje na rucak samobor, poslovni rucak, marenda, hrana samobor">
     <meta name="author" content="HrvaLabs.net">
@@ -141,63 +141,166 @@
                         "@type": "Answer",
                         "text": "Da, Gableci je potpuno besplatna platforma. Nema registracije niti plaćanja. Jednostavno posjetite stranicu i pregledajte dostupne jelovnike."
                     }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Gdje se nalaze restorani za gablec u Samoboru?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Restoran Stadion nalazi se na adresi Andrije Hebranga 43, Samobor (10430). Restoran Vugrinšćak nalazi se na Vugrinšćak 73, Samobor (10430). Restoran Breza nalazi se na Ulici Dr. Franje Tuđmana 93, Sveta Nedelja (10431), u blizini Samobora."
+                    }
                 }
             ]
         }
     </script>
 
-    <!-- Schema: LocalBusiness for each restaurant -->
+    <!-- Schema: Restaurant for each establishment -->
     <script type="application/ld+json">
-    [
-        {
-            "@context": "https://schema.org",
-            "@type": "FoodEstablishment",
-            "name": "Bistro Stadion",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Andrije Hebranga 43",
-                "addressLocality": "Samobor",
-                "addressRegion": "Zagrebačka županija",
-                "postalCode": "10430",
-                "addressCountry": "HR"
-            },
-            "servesCuisine": "Croatian",
-            "priceRange": "€",
-            "menu": "https://gableci.hrva.cc/#stadion"
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Bistro Stadion",
+        "telephone": "+38599707243",
+        "url": "https://gableci.hrva.cc/#stadion",
+        "image": "https://cdn.hrva.cc/gableci/stadion.jpg",
+        "menu": "https://gableci.hrva.cc/#stadion",
+        "servesCuisine": "Croatian",
+        "priceRange": "€",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Andrije Hebranga 43",
+            "addressLocality": "Samobor",
+            "addressRegion": "Zagrebačka županija",
+            "postalCode": "10430",
+            "addressCountry": "HR"
         },
-        {
-            "@context": "https://schema.org",
-            "@type": "FoodEstablishment",
-            "name": "Bistro Vugrinšćak",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Vugrinšćak 73",
-                "addressLocality": "Samobor",
-                "addressRegion": "Zagrebačka županija",
-                "postalCode": "10430",
-                "addressCountry": "HR"
-            },
-            "servesCuisine": "Croatian",
-            "priceRange": "€",
-            "menu": "https://gableci.hrva.cc/#vugrinscak"
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "09:00",
+                "closes": "15:00"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Bistro Vugrinšćak",
+        "telephone": "+38599336051",
+        "url": "https://gableci.hrva.cc/#vugrinscak",
+        "image": "https://cdn.hrva.cc/gableci/vugrinscak.jpg",
+        "menu": "https://gableci.hrva.cc/#vugrinscak",
+        "servesCuisine": "Croatian",
+        "priceRange": "€€",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Vugrinšćak 73",
+            "addressLocality": "Samobor",
+            "addressRegion": "Zagrebačka županija",
+            "postalCode": "10430",
+            "addressCountry": "HR"
         },
-        {
-            "@context": "https://schema.org",
-            "@type": "FoodEstablishment",
-            "name": "Restoran Breza",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Ulica Dr. Franje Tuđmana 93",
-                "addressLocality": "Sveta Nedelja",
-                "addressRegion": "Zagrebačka županija",
-                "postalCode": "10431",
-                "addressCountry": "HR"
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "09:00",
+                "closes": "23:00"
             },
-            "servesCuisine": "Croatian",
-            "priceRange": "€",
-            "menu": "https://gableci.hrva.cc/#breza"
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Sunday"],
+                "opens": "10:00",
+                "closes": "23:00"
+            }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Restoran Breza",
+        "telephone": "+38513336171",
+        "url": "https://gableci.hrva.cc/#breza",
+        "sameAs": "https://www.restoran-breza.com/",
+        "image": "https://cdn.hrva.cc/gableci/breza.jpg",
+        "menu": "https://gableci.hrva.cc/#breza",
+        "servesCuisine": "Croatian",
+        "priceRange": "€",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Ulica Dr. Franje Tuđmana 93",
+            "addressLocality": "Sveta Nedelja",
+            "addressRegion": "Zagrebačka županija",
+            "postalCode": "10431",
+            "addressCountry": "HR"
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "08:00",
+                "closes": "19:00"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Schema: Organization (brand entity for GEO) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "HrvaLabs.net",
+        "url": "https://hrva.cc",
+        "email": "gableci@hrvalabs.net",
+        "description": "Neovisna platforma za pregled tjednih jelovnika restorana u Samoboru"
+    }
+    </script>
+
+    <!-- Schema: HowTo (AEO — featured snippets for "kako koristiti") -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Kako koristiti Gableci",
+        "description": "Kako pronaći i pregledati tjedne jelovnike samoborskih restorana na platformi Gableci.",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Odaberite restoran",
+                "text": "Kliknite na jedan od restorana — Stadion, Vugrinšćak ili Breza — za prikaz tjednog jelovnika."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Pregledajte ponudu",
+                "text": "Odaberite dan u tjednu klikom na chip u kalendaru i pregledajte dostupna jela s cijenama."
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Usporedite i odlučite",
+                "text": "Koristite AI preporuke — Danas preporučujemo, Najzdravije, Najobilnije, Najbolja cijena — za usporedbu restorana i odlučite gdje danas na gablec."
+            }
+        ]
+    }
+    </script>
+
+    <!-- Schema: WebPage + Speakable (AEO / voice search) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Gableci Samobor | Jelovnici Stadion, Vugrinšćak, Breza",
+        "url": "https://gableci.hrva.cc/",
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": ["h1", ".site-subtitle", ".info-heading", ".faq-q", ".faq-a"]
         }
-    ]
+    }
     </script>
 
     <style>
@@ -291,7 +394,19 @@
             color: var(--text);
             letter-spacing: 0.06em;
             line-height: 1;
-            margin-bottom: 12px;
+            margin-bottom: 4px;
+        }
+
+        .site-title-geo {
+            display: block;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(0.8rem, 2.2vw, 1.1rem);
+            font-weight: 600;
+            font-style: normal;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
         }
 
         .site-subtitle {
@@ -465,11 +580,14 @@
             text-align: center;
         }
         .per-rest-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 8px;
+            justify-content: center;
         }
         .per-rest-card {
+            flex: 1 1 140px;
+            max-width: 200px;
             background: rgba(26, 18, 8, 0.5);
             border: 1px solid rgba(184, 137, 42, 0.12);
             border-radius: 8px;
@@ -731,7 +849,7 @@
         /* Feature grid */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 14px;
             margin-top: 28px;
         }
@@ -1049,10 +1167,6 @@
             .picks-strip {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .per-rest-cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .week-strip {
                 padding: 12px 14px 0;
                 gap: 5px;
@@ -1239,7 +1353,7 @@
         Jelovnici Samobor
         <span class="eyebrow-line"></span>
     </p>
-    <h1 class="site-title">Gableci</h1>
+    <h1 class="site-title">Gableci<span class="site-title-geo">Samobor</span></h1>
     <p class="site-subtitle">Tjedni jelovnici samoborskih restorana</p>
 </header>
 
@@ -1399,6 +1513,12 @@
                 <summary class="faq-q">Je li gablec platforma besplatan?</summary>
                 <p class="faq-a">Da, gableci.hrva.cc je potpuno besplatna platforma. Nema registracije niti plaćanja —
                     jednostavno posjetite stranicu i pregledajte dostupne jelovnike.</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">Gdje se nalaze restorani za gablec u Samoboru?</summary>
+                <p class="faq-a">Restoran Stadion nalazi se na adresi Andrije Hebranga 43, Samobor. Restoran Vugrinšćak
+                    nalazi se na Vugrinšćak 73, Samobor. Restoran Breza nalazi se na Ulici Dr. Franje Tuđmana 93,
+                    Sveta Nedelja — u blizini Samobora.</p>
             </details>
         </div>
     </div>
@@ -1639,20 +1759,24 @@
         return base + '?v=' + encodeURIComponent(v);
     }
 
+    function _openModal(rest, imgUrl) {
+        const img = document.getElementById('photo-modal-img');
+        img.src = imgUrl;
+        img.alt = (RESTAURANT_NAMES[rest] || rest) + ' — originalni jelovnik';
+        document.getElementById('photo-modal').style.display = 'flex';
+        document.addEventListener('keydown', _handleModalKey);
+    }
+
     function openMenuPhotoFor(rest) {
         const imgUrl = _imgUrlFor(rest);
         if (!imgUrl) return;
-        document.getElementById('photo-modal-img').src = imgUrl;
-        document.getElementById('photo-modal').style.display = 'flex';
-        document.addEventListener('keydown', _handleModalKey);
+        _openModal(rest, imgUrl);
     }
 
     function openMenuPhoto() {
         const imgUrl = _imgUrlFor(activeRestaurant);
         if (!imgUrl) return;
-        document.getElementById('photo-modal-img').src = imgUrl;
-        document.getElementById('photo-modal').style.display = 'flex';
-        document.addEventListener('keydown', _handleModalKey);
+        _openModal(activeRestaurant, imgUrl);
     }
 
     function closeMenuPhoto() {
