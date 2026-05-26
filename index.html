@@ -144,6 +144,22 @@
                 },
                 {
                     "@type": "Question",
+                    "name": "Koliko košta gablec u Samoboru?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Cijene gableca u Samoboru kreću se od 5 do 15 eura po osobi. Bistro Stadion i Restoran Breza nude gablece od 5 do 10 eura, dok je Bistro Vugrinšćak u rasponu od 10 do 15 eura po osobi."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Koje je radno vrijeme restorana za gablec u Samoboru?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Bistro Stadion radi ponedjeljkom do subote od 9 do 15 sati (nedjeljom zatvoreno). Bistro Vugrinšćak radi svaki dan — ponedjeljak do subota 9–23h, nedjeljom 10–23h. Restoran Breza radi ponedjeljkom do subote od 8 do 19 sati (nedjeljom zatvoreno)."
+                    }
+                },
+                {
+                    "@type": "Question",
                     "name": "Gdje se nalaze restorani za gablec u Samoboru?",
                     "acceptedAnswer": {
                         "@type": "Answer",
@@ -160,6 +176,7 @@
         "@context": "https://schema.org",
         "@type": "Restaurant",
         "name": "Bistro Stadion",
+        "description": "Bistro Stadion u Samoboru nudi pristupačne tjedne gablece s tradicioanalnim jelima hrvatske kuhinje. Obilne porcije po pristupačnim cijenama, 5–10 eura po osobi.",
         "telephone": "+38599707243",
         "url": "https://gableci.hrva.cc/#stadion",
         "image": "https://cdn.hrva.cc/gableci/stadion.jpg",
@@ -177,7 +194,7 @@
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
                 "opens": "09:00",
                 "closes": "15:00"
             }
@@ -189,6 +206,7 @@
         "@context": "https://schema.org",
         "@type": "Restaurant",
         "name": "Bistro Vugrinšćak",
+        "description": "Bistro Vugrinšćak u Samoboru nudi raznovrsne tjedne menije s naglaskom na sezonske sastojke i domaće recepte. Otvoren svaki dan, 10–15 eura po osobi.",
         "telephone": "+38599336051",
         "url": "https://gableci.hrva.cc/#vugrinscak",
         "image": "https://cdn.hrva.cc/gableci/vugrinscak.jpg",
@@ -224,6 +242,7 @@
         "@context": "https://schema.org",
         "@type": "Restaurant",
         "name": "Restoran Breza",
+        "description": "Restoran Breza u Svetoj Nedelji poznat je po obilnim porcijama i obiteljskoj atmosferi. Nudi tjedne gablece i a la carte jelovnik, 5–10 eura po osobi.",
         "telephone": "+38513336171",
         "url": "https://gableci.hrva.cc/#breza",
         "sameAs": "https://www.restoran-breza.com/",
@@ -242,7 +261,7 @@
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
                 "opens": "08:00",
                 "closes": "19:00"
             }
@@ -255,10 +274,74 @@
     {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "HrvaLabs.net",
+        "name": "HrvaLabs",
+        "alternateName": "HrvaLabs.net",
         "url": "https://hrva.cc",
         "email": "gableci@hrvalabs.net",
-        "description": "Neovisna platforma za pregled tjednih jelovnika restorana u Samoboru"
+        "description": "Neovisna platforma za pregled tjednih jelovnika restorana u Samoboru",
+        "founder": {
+            "@type": "Person",
+            "name": "Karlo Hrvačić",
+            "url": "https://karlo.cc"
+        }
+    }
+    </script>
+
+    <!-- Schema: Person (GEO entity) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Karlo Hrvačić",
+        "url": "https://karlo.cc",
+        "sameAs": ["https://karlo.cc", "https://hrva.cc"],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "HrvaLabs",
+            "url": "https://hrva.cc"
+        }
+    }
+    </script>
+
+    <!-- Schema: ItemList (AEO list snippet) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Restorani za gablec u Samoboru",
+        "description": "Popis restorana koji nude tjedne gablece u Samoboru i okolici",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "Restaurant",
+                    "name": "Bistro Stadion",
+                    "url": "https://gableci.hrva.cc/#stadion",
+                    "priceRange": "€"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "Restaurant",
+                    "name": "Bistro Vugrinšćak",
+                    "url": "https://gableci.hrva.cc/#vugrinscak",
+                    "priceRange": "€€"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "Restaurant",
+                    "name": "Restoran Breza",
+                    "url": "https://gableci.hrva.cc/#breza",
+                    "priceRange": "€"
+                }
+            }
+        ]
     }
     </script>
 
@@ -296,6 +379,12 @@
         "@type": "WebPage",
         "name": "Gableci Samobor | Jelovnici Stadion, Vugrinšćak, Breza",
         "url": "https://gableci.hrva.cc/",
+        "dateModified": "2026-05-26",
+        "author": {
+            "@type": "Person",
+            "name": "Karlo Hrvačić",
+            "url": "https://karlo.cc"
+        },
         "speakable": {
             "@type": "SpeakableSpecification",
             "cssSelector": ["h1", ".site-subtitle", ".info-heading", ".faq-q", ".faq-a"]
@@ -846,6 +935,16 @@
             font-weight: 600;
         }
 
+        .info-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
         /* Feature grid */
         .features-grid {
             display: grid;
@@ -1326,6 +1425,40 @@
             .about-inner { padding: 20px; gap: 20px; }
         }
 
+        /* ===== RESTAURANT COMPARE TABLE ===== */
+        .restaurant-compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0 24px;
+            font-size: 13px;
+        }
+        .restaurant-compare-table th {
+            text-align: left;
+            padding: 8px 14px;
+            background: var(--bg);
+            color: var(--text);
+            font-weight: 600;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .restaurant-compare-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--card-border);
+            color: var(--text-dark-muted);
+            vertical-align: top;
+            line-height: 1.45;
+        }
+        .restaurant-compare-table tr:last-child td { border-bottom: none; }
+        .restaurant-compare-table td:first-child { font-weight: 600; color: var(--text-dark); }
+        .restaurant-compare-table a { color: var(--accent); text-decoration: none; }
+        .restaurant-compare-table a:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .restaurant-compare-table { font-size: 12px; }
+            .restaurant-compare-table th, .restaurant-compare-table td { padding: 8px 10px; }
+        }
+
         @media print {
             body {
                 background: white;
@@ -1451,12 +1584,40 @@
             možete usporediti sve ponude na jednom mjestu.</p>
 
         <h3>Restorani u Samoboru</h3>
-        <p><strong>Restoran Stadion</strong> — Popularan restoran smješten u blizini sportskog stadiona. Poznat po
-            obilnim porcijama i tradicionalnim jelima hrvatske kuhinje po pristupačnim cijenama.</p>
-        <p><strong>Restoran Vugrinšćak</strong> — Omiljeno mjesto za gablec među lokalnim stanovništvom. Nudi raznovrsne
-            tjedne menije s naglaskom na sezonske sastojke i domaće recepte.</p>
-        <p><strong>Restoran Breza</strong> — Restoran koji se ističe obiteljskom atmosferom i velikodušnim porcijama.
-            Savršen izbor za kvalitetan obrok.</p>
+        <p><strong><a href="#stadion" onclick="showMenu('stadion')">Bistro Stadion</a></strong> — Popularan restoran smješten u blizini sportskog stadiona. Poznat po obilnim porcijama i tradicionalnim jelima hrvatske kuhinje po pristupačnim cijenama (5–10 €).</p>
+        <p><strong><a href="#vugrinscak" onclick="showMenu('vugrinscak')">Bistro Vugrinšćak</a></strong> — Omiljeno mjesto za gablec među lokalnim stanovništvom. Nudi raznovrsne tjedne menije s naglaskom na sezonske sastojke i domaće recepte (10–15 €).</p>
+        <p><strong><a href="#breza" onclick="showMenu('breza')">Restoran Breza</a></strong> — Restoran koji se ističe obiteljskom atmosferom i obilnim porcijama. Poznat po lignjama i domaćim jelima, u blizini Samobora (5–10 €).</p>
+
+        <table class="restaurant-compare-table" aria-label="Pregled restorana — radno vrijeme i kontakt">
+            <thead>
+                <tr>
+                    <th>Restoran</th>
+                    <th>Radno vrijeme</th>
+                    <th>Cijena</th>
+                    <th>Telefon</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bistro Stadion</td>
+                    <td>Pon–Sub: 9–15h · Ned: zatvoreno</td>
+                    <td>5–10 €</td>
+                    <td><a href="tel:+38599707243">099 707 2438</a></td>
+                </tr>
+                <tr>
+                    <td>Bistro Vugrinšćak</td>
+                    <td>Pon–Sub: 9–23h · Ned: 10–23h</td>
+                    <td>10–15 €</td>
+                    <td><a href="tel:+38599336051">099 336 0519</a></td>
+                </tr>
+                <tr>
+                    <td>Restoran Breza</td>
+                    <td>Pon–Sub: 8–19h · Ned: zatvoreno</td>
+                    <td>5–10 €</td>
+                    <td><a href="tel:+38513336171">01 333 6171</a></td>
+                </tr>
+            </tbody>
+        </table>
 
         <h3>Kako koristiti Gableci</h3>
         <p>Jelovnike ažuriramo tjedno. Kliknite na željeni restoran, pregledajte ponudu i usporedite jela i cijene.
@@ -1513,6 +1674,17 @@
                 <summary class="faq-q">Je li gablec platforma besplatan?</summary>
                 <p class="faq-a">Da, gableci.hrva.cc je potpuno besplatna platforma. Nema registracije niti plaćanja —
                     jednostavno posjetite stranicu i pregledajte dostupne jelovnike.</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">Koliko košta gablec u Samoboru?</summary>
+                <p class="faq-a">Cijene gableca u Samoboru kreću se od 5 do 15 eura po osobi. Bistro Stadion i
+                    Restoran Breza nude gablece od 5 do 10 eura, dok je Bistro Vugrinšćak u rasponu od 10 do 15
+                    eura po osobi.</p>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-q">Koje je radno vrijeme restorana za gablec u Samoboru?</summary>
+                <p class="faq-a">Bistro Stadion radi ponedjeljkom do subote od 9 do 15 sati (nedjeljom zatvoreno). Bistro Vugrinšćak radi svaki dan — ponedjeljak do subota 9–23h, nedjeljom
+                    10–23h. Restoran Breza radi ponedjeljkom do subote od 8 do 19 sati (nedjeljom zatvoreno).</p>
             </details>
             <details class="faq-item">
                 <summary class="faq-q">Gdje se nalaze restorani za gablec u Samoboru?</summary>
@@ -1573,9 +1745,22 @@
         <div class="about-block">
             <p class="about-label">O platformi</p>
             <p class="about-text">
-                Gableci je projekt <a href="https://hrva.cc" target="_blank" rel="noopener noreferrer">HrvaLabs.net</a> —
+                Gableci je projekt <a href="https://hrva.cc" target="_blank" rel="noopener noreferrer">HrvaLabs</a> —
                 besplatna, neovisna platforma za pregled tjednih jelovnika restorana u Samoboru.
                 Nije poslovno povezana s prikazanim restoranima.
+            </p>
+        </div>
+        <div class="about-block">
+            <p class="about-label">Autor</p>
+            <p class="about-text">
+                Kreirao <a href="https://karlo.cc" target="_blank" rel="noopener noreferrer"><strong>Karlo Hrvačić</strong></a>
+                kao neovisni projekt za lokalnu zajednicu Samobora.
+            </p>
+        </div>
+        <div class="about-block">
+            <p class="about-label">Ažurirano</p>
+            <p class="about-text">
+                <time id="last-updated" datetime="2026-05-26">2026-W22</time>
             </p>
         </div>
         <div class="about-block">
@@ -1919,6 +2104,11 @@
             });
             document.getElementById('restaurant-name').textContent = RESTAURANT_NAMES[activeRestaurant];
             document.getElementById('week-tag').textContent = menuData.week || 'Tjedni jelovnik';
+            const updatedEl = document.getElementById('last-updated');
+            if (updatedEl && menuData.week) {
+                updatedEl.textContent = menuData.week;
+                if (menuData.generated_at) updatedEl.setAttribute('datetime', menuData.generated_at.slice(0, 10));
+            }
             _updatePhotoBtn();
 
             renderWeekStrip(days);
