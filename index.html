@@ -52,7 +52,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.hrva.cc" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.hrva.cc">
-    <link rel="preload" as="image" href="https://cdn.hrva.cc/gableci/stadion.jpg" fetchpriority="high">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
           rel="stylesheet">
 
@@ -90,37 +89,6 @@
                     "name": "Zagrebacka zupanija"
                 }
             }
-        }
-    </script>
-
-    <!-- Schema: ItemList -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": "Gableci Samobor - Tjedni Jelovnici",
-            "description": "Tjedni jelovnici restorana u Samoboru - Stadion, Vugrinscak, Breza",
-            "numberOfItems": 3,
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Restoran Stadion Samobor - Tjedni Jelovnik",
-                    "url": "https://gableci.hrva.cc/#stadion"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "Restoran Vugrinscak Samobor - Tjedni Jelovnik",
-                    "url": "https://gableci.hrva.cc/#vugrinscak"
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "name": "Restoran Breza Samobor - Tjedni Jelovnik",
-                    "url": "https://gableci.hrva.cc/#breza"
-                }
-            ]
         }
     </script>
 
@@ -432,35 +400,286 @@
             flex-shrink: 0;
         }
 
-        .menu-panels {
-            position: relative;
+        /* ===== PICKS STRIP ===== */
+        .picks-section {
+            padding: 0 20px 20px;
+            animation: fadeUp 0.6s 0.04s ease both;
         }
 
-        .menu-panel {
-            display: none;
-            animation: imageFade 0.35s ease;
+        .picks-strip {
+            max-width: 860px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
         }
 
-        .menu-panel.active {
-            display: block;
+        .pick-card {
+            background: linear-gradient(135deg, #1a1208 0%, #261a0a 100%);
+            border: 1px solid rgba(184, 137, 42, 0.25);
+            border-radius: 10px;
+            padding: 14px 16px;
         }
 
-        .menu-img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .pick-category {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+
+        .pick-restaurant {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 3px;
+        }
+
+        .pick-dish {
+            font-size: 13px;
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 4px;
+            line-height: 1.35;
+        }
+
+        .pick-reason {
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* ===== PER-RESTAURANT PICKS ===== */
+        .per-rest-section {
+            max-width: 860px;
+            margin: 14px auto 0;
+        }
+        .per-rest-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .per-rest-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .per-rest-tab {
+            flex: 1;
+            padding: 7px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(184, 137, 42, 0.2);
+            background: transparent;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s ease, transform 0.3s ease;
+            transition: all var(--t);
+        }
+        .per-rest-tab.active {
+            background: rgba(184, 137, 42, 0.1);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .per-rest-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 8px;
+        }
+        .per-rest-card {
+            background: rgba(26, 18, 8, 0.5);
+            border: 1px solid rgba(184, 137, 42, 0.12);
+            border-radius: 8px;
+            padding: 10px 12px;
+        }
+        .per-rest-cat {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+        .per-rest-badge {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 1px 5px;
+            border-radius: 3px;
+            background: rgba(184, 137, 42, 0.15);
+            color: var(--gold);
+            margin-bottom: 3px;
+        }
+        .per-rest-dish {
+            font-size: 12px;
+            color: var(--text);
+            font-weight: 500;
+            line-height: 1.35;
+            margin-bottom: 3px;
+        }
+        .per-rest-reason {
+            font-size: 10px;
+            color: var(--text-muted);
+            line-height: 1.4;
         }
 
-        .menu-img:hover {
-            opacity: 0.95;
-            transform: scale(1.005);
+        /* ===== WEEK STRIP ===== */
+        .week-strip {
+            display: flex;
+            gap: 8px;
+            padding: 16px 24px 0;
         }
 
-        .menu-img:focus-visible {
-            outline: 3px solid var(--accent);
-            outline-offset: -3px;
+        .day-chip {
+            flex: 1;
+            padding: 10px 6px 8px;
+            border-radius: 8px;
+            text-align: center;
+            background: #f0ebe2;
+            cursor: pointer;
+            transition: all var(--t);
+            border: 2px solid transparent;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .day-chip:hover:not(.day-chip-closed) {
+            border-color: var(--accent);
+        }
+
+        .day-chip.active {
+            background: var(--accent);
+        }
+
+        .day-chip.day-chip-closed {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .day-chip-name {
+            display: block;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-dark-muted);
+            margin-bottom: 2px;
+        }
+
+        .day-chip.active .day-chip-name {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .day-chip-date {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .day-chip.active .day-chip-date {
+            color: #fff;
+        }
+
+        .day-chip-dot {
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            margin: 4px auto 0;
+            background: #22c55e;
+        }
+
+        .day-chip-dot.closed {
+            background: #ef4444;
+        }
+
+        /* ===== MENU CONTENT ===== */
+        .menu-section {
+            padding: 0;
+        }
+
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .menu-table tr:nth-child(even) td {
+            background: #f0ebe2;
+        }
+
+        .menu-table td {
+            padding: 12px 24px;
+            font-size: 14px;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--card-border);
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        .menu-table td.price {
+            text-align: right;
+            font-weight: 600;
+            color: var(--accent);
+            white-space: nowrap;
+            width: 90px;
+        }
+
+        .weekly-divider {
+            padding: 10px 24px 6px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border-top: 1px solid var(--card-border);
+            background: var(--card);
+        }
+
+        .closed-notice {
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        .closed-notice-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .closed-notice-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark-muted);
+        }
+
+        /* ===== LOADING / ERROR ===== */
+        .loading-state {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .error-state {
+            max-width: 860px;
+            margin: 0 auto 20px;
+            background: #2d1010;
+            border: 1px solid #7f1d1d;
+            border-radius: var(--r);
+            padding: 20px 24px;
+            text-align: center;
+            color: #fca5a5;
+            font-size: 14px;
         }
 
         .menu-caption {
@@ -470,74 +689,6 @@
             color: var(--text-dark-muted);
             border-top: 1px solid var(--card-border);
             background: var(--card);
-        }
-
-        /* ===== FULLSCREEN VIEWER ===== */
-        .viewer {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(8, 6, 5, 0.97);
-            z-index: 1000;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-            backdrop-filter: blur(6px);
-        }
-
-        .viewer.active {
-            display: block;
-            animation: fadeIn 0.22s ease;
-        }
-
-        .viewer-inner {
-            min-height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 68px 16px 16px;
-        }
-
-        .viewer img {
-            max-width: 100%;
-            width: auto;
-            height: auto;
-            display: block;
-            cursor: grab;
-            border-radius: 4px;
-        }
-
-        .viewer img:active {
-            cursor: grabbing;
-        }
-
-        .close-btn {
-            position: fixed;
-            top: 18px;
-            right: 18px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            color: #fff;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            font-size: 19px;
-            cursor: pointer;
-            z-index: 1001;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(8px);
-        }
-
-        .close-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.08);
-        }
-
-        .close-btn:focus-visible {
-            outline: 2px solid #fff;
-            outline-offset: 3px;
         }
 
         /* ===== INFO SECTION ===== */
@@ -888,6 +1039,35 @@
             .footer-nav {
                 gap: 14px;
             }
+
+            .picks-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .per-rest-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .week-strip {
+                padding: 12px 14px 0;
+                gap: 5px;
+            }
+
+            .day-chip {
+                padding: 8px 4px 6px;
+            }
+
+            .day-chip-date {
+                font-size: 12px;
+            }
+
+            .menu-table td {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+
+            .menu-table td.price {
+                width: 72px;
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -897,6 +1077,75 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* ===== PHOTO LIGHTBOX ===== */
+        .photo-btn {
+            background: none;
+            border: 1px solid var(--card-border);
+            border-radius: 7px;
+            padding: 5px 8px;
+            cursor: pointer;
+            color: var(--text-dark-muted);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: all var(--t);
+            flex-shrink: 0;
+        }
+        .photo-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(192, 78, 28, 0.05);
+        }
+        .photo-btn:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+        .photo-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: zoom-out;
+            animation: fadeIn 0.18s ease;
+        }
+        .photo-modal-img {
+            max-width: min(100%, 900px);
+            max-height: 90vh;
+            border-radius: 8px;
+            object-fit: contain;
+            cursor: default;
+            box-shadow: 0 32px 100px rgba(0, 0, 0, 0.8);
+            animation: fadeUp 0.22s ease;
+        }
+        .photo-modal-close {
+            position: fixed;
+            top: 18px;
+            right: 22px;
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            color: #fff;
+            font-size: 22px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--t);
+            line-height: 1;
+        }
+        .photo-modal-close:hover { background: rgba(255, 255, 255, 0.22); }
+        .photo-modal-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
         /* ===== ABOUT SECTION ===== */
         .about-section {
@@ -952,7 +1201,7 @@
                 color: black;
             }
 
-            .restaurant-nav, .share-section, .about-section, .viewer, .menu-caption, .site-footer {
+            .restaurant-nav, .share-section, .about-section, .menu-caption, .site-footer {
                 display: none;
             }
 
@@ -977,6 +1226,12 @@
     <p class="site-subtitle">Tjedni jelovnici samoborskih restorana</p>
 </header>
 
+<!-- Picks strip -->
+<section class="picks-section" id="picks-section" aria-label="Preporuke za danas" style="display:none">
+    <div class="picks-strip" id="picks-strip"></div>
+    <div class="per-rest-section" id="per-rest-section"></div>
+</section>
+
 <nav class="restaurant-nav" aria-label="Odabir restorana">
     <div class="tabs" role="tablist">
         <button class="tab-btn active"
@@ -984,6 +1239,7 @@
                 aria-selected="true"
                 aria-controls="stadion"
                 id="tab-stadion"
+                data-restaurant="stadion"
                 onclick="showMenu('stadion')">
             Stadion
         </button>
@@ -992,6 +1248,7 @@
                 aria-selected="false"
                 aria-controls="vugrinscak"
                 id="tab-vugrinscak"
+                data-restaurant="vugrinscak"
                 onclick="showMenu('vugrinscak')">
             Vugrinšćak
         </button>
@@ -1000,6 +1257,7 @@
                 aria-selected="false"
                 aria-controls="breza"
                 id="tab-breza"
+                data-restaurant="breza"
                 onclick="showMenu('breza')">
             Breza
         </button>
@@ -1007,77 +1265,31 @@
 </nav>
 
 <main id="main-content" class="content-area">
-    <div class="menu-card">
+    <div id="loading-state" class="loading-state">Učitavam jelovnike…</div>
+    <div id="error-state" class="error-state" style="display:none">
+        Jelovnici trenutno nisu dostupni. Pokušajte osvježiti stranicu.
+    </div>
+    <div id="menu-card" class="menu-card" style="display:none">
         <div class="menu-card-top">
             <h2 class="restaurant-name" id="restaurant-name">Restoran Stadion</h2>
-            <span class="week-tag">Tjedni jelovnik</span>
+            <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+                <span class="week-tag" id="week-tag">Tjedni jelovnik</span>
+                <button class="photo-btn" id="photo-btn" onclick="openMenuPhoto()"
+                        aria-label="Prikaži originalnu fotografiju jelovnika" style="display:none">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    Slika
+                </button>
+            </div>
         </div>
-        <div class="menu-panels">
-            <section id="stadion"
-                     class="menu-panel active"
-                     role="tabpanel"
-                     aria-labelledby="tab-stadion">
-                <img class="menu-img"
-                     src="https://cdn.hrva.cc/gableci/stadion.jpg"
-                     alt="Tjedni jelovnik restoran Stadion Samobor - gableci ponuda"
-                     width="800"
-                     height="1200"
-                     loading="eager"
-                     onclick="openViewer(this.src, this.alt)"
-                     onkeydown="handleImageKeyDown(event, this.src, this.alt)"
-                     tabindex="0">
-            </section>
-            <section id="vugrinscak"
-                     class="menu-panel"
-                     role="tabpanel"
-                     aria-labelledby="tab-vugrinscak"
-                     aria-hidden="true">
-                <img class="menu-img"
-                     src="https://cdn.hrva.cc/gableci/vugrinscak.jpg"
-                     alt="Tjedni jelovnik restoran Vugrinscak Samobor - gableci ponuda"
-                     width="800"
-                     height="1200"
-                     loading="lazy"
-                     onclick="openViewer(this.src, this.alt)"
-                     onkeydown="handleImageKeyDown(event, this.src, this.alt)"
-                     tabindex="0">
-            </section>
-            <section id="breza"
-                     class="menu-panel"
-                     role="tabpanel"
-                     aria-labelledby="tab-breza"
-                     aria-hidden="true">
-                <img class="menu-img"
-                     src="https://cdn.hrva.cc/gableci/breza.jpg"
-                     alt="Tjedni jelovnik restoran Breza Samobor - gableci ponuda"
-                     width="800"
-                     height="1200"
-                     loading="lazy"
-                     onclick="openViewer(this.src, this.alt)"
-                     onkeydown="handleImageKeyDown(event, this.src, this.alt)"
-                     tabindex="0">
-            </section>
-        </div>
-        <p class="menu-caption">Kliknite na jelovnik za prikaz u punoj veličini</p>
+        <div id="week-strip-container" class="week-strip"></div>
+        <div id="menu-content" class="menu-section"></div>
+        <p class="menu-caption" id="menu-caption"></p>
     </div>
 </main>
-
-<!-- Fullscreen viewer -->
-<div id="viewer"
-     class="viewer"
-     role="dialog"
-     aria-modal="true"
-     aria-label="Prikaz jelovnika u punoj veličini">
-    <button class="close-btn"
-            onclick="closeViewer()"
-            aria-label="Zatvori prikaz"
-            type="button">
-        ✕
-    </button>
-    <div class="viewer-inner">
-        <img id="viewer-img" src="" alt="">
-    </div>
-</div>
 
 <!-- Info / SEO Section -->
 <section class="info-section" aria-label="Informacije o gablecima u Samoboru">
@@ -1236,93 +1448,374 @@
     </div>
 </footer>
 
+<div id="photo-modal" class="photo-modal" style="display:none"
+     role="dialog" aria-modal="true" aria-label="Fotografija jelovnika" onclick="closeMenuPhoto()">
+    <button class="photo-modal-close" onclick="closeMenuPhoto()" aria-label="Zatvori">&#x2715;</button>
+    <img id="photo-modal-img" class="photo-modal-img" src="" alt="Originalni jelovnik"
+         onclick="event.stopPropagation()">
+</div>
+
 <script>
+    const CDN = 'https://cdn.hrva.cc/gableci/menus.json';
     const RESTAURANT_NAMES = {
         stadion: 'Restoran Stadion',
         vugrinscak: 'Restoran Vugrinšćak',
         breza: 'Restoran Breza'
     };
+    const PICK_LABELS = {
+        best: 'Danas preporučujemo',
+        healthiest: 'Najzdravije',
+        most_filling: 'Najsitnije',
+        best_value: 'Najbolja cijena'
+    };
+    const PER_REST_LABELS = {
+        best_daily: 'Dnevno',
+        best_weekly: 'Tjedni meni',
+        best: 'Preporuka',
+        healthiest: 'Najzdravije',
+        most_filling: 'Najsitnije',
+        best_value: 'Najjeftinije'
+    };
+    const SOURCE_LABELS = { daily: 'dnevni', weekly: 'tjedni' };
+    const DAY_ABBR = ['PON', 'UTO', 'SRI', 'ČET', 'PET'];
+    const MENU_IMAGES = {
+        stadion: 'https://cdn.hrva.cc/gableci/stadion.jpg',
+        vugrinscak: 'https://cdn.hrva.cc/gableci/vugrinscak.jpg',
+        breza: 'https://cdn.hrva.cc/gableci/breza.jpg'
+    };
 
-    function showMenu(menuId) {
-        document.querySelectorAll('.menu-panel').forEach(function (p) {
-            p.classList.remove('active');
-            p.setAttribute('aria-hidden', 'true');
+    function escHtml(s) {
+        return String(s)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    let menuData = null;
+    let activeRestaurant = 'stadion';
+    let activeDay = null;
+    let _perRestData = null;
+    let _activePerRestTab = null;
+
+    function todayISO() {
+        return new Date().toISOString().slice(0, 10);
+    }
+
+    function getWeekDays(data) {
+        const keys = Object.keys(data.picks || {}).sort();
+        if (keys.length) return keys;
+        const base = new Date(data.generated_at);
+        const mon = new Date(base);
+        mon.setDate(base.getDate() - base.getDay() + 1);
+        return Array.from({length: 5}, (_, i) => {
+            const d = new Date(mon);
+            d.setDate(mon.getDate() + i);
+            return d.toISOString().slice(0, 10);
         });
+    }
 
-        document.querySelectorAll('.tab-btn').forEach(function (t) {
-            t.classList.remove('active');
-            t.setAttribute('aria-selected', 'false');
+    function getDayData(restaurantKey, isoDate) {
+        const rest = menuData.restaurants[restaurantKey];
+        if (!rest) return null;
+        return (rest.days || []).find(d => {
+            const [y, m, day] = isoDate.split('-');
+            return d.date === `${day}.${m}.${y}`;
+        }) || null;
+    }
+
+    function isRestaurantOpen(restaurantKey, isoDate) {
+        const day = getDayData(restaurantKey, isoDate);
+        if (!day) {
+            const rest = menuData.restaurants[restaurantKey];
+            return rest.type === 'both' && (rest.weekly_items || []).length > 0;
+        }
+        return !day.closed;
+    }
+
+    function renderPicks(isoDate) {
+        const dayPicks = (menuData.picks || {})[isoDate];
+        const section = document.getElementById('picks-section');
+        const strip = document.getElementById('picks-strip');
+        if (!dayPicks) { section.style.display = 'none'; return; }
+
+        const overall = dayPicks.overall || dayPicks;
+        strip.innerHTML = Object.entries(PICK_LABELS).map(([key, label]) => {
+            const pick = overall[key];
+            if (!pick) return '';
+            const restName = RESTAURANT_NAMES[pick.restaurant] || pick.restaurant;
+            return `<div class="pick-card">
+                <div class="pick-category">${label}</div>
+                <div class="pick-restaurant">${escHtml(restName)}</div>
+                <div class="pick-dish">${escHtml(pick.dish)}</div>
+                <div class="pick-reason">${escHtml(pick.reason)}</div>
+            </div>`;
+        }).join('');
+
+        _renderPerRestaurantPicks(dayPicks.per_restaurant || null);
+        section.style.display = '';
+    }
+
+    function _renderPerRestaurantPicks(perRest) {
+        const section = document.getElementById('per-rest-section');
+        if (!perRest || Object.keys(perRest).length === 0) { section.innerHTML = ''; return; }
+        _perRestData = perRest;
+        _activePerRestTab = Object.keys(perRest)[0];
+        section.innerHTML = `
+            <div class="per-rest-label">Po restoranu</div>
+            <div class="per-rest-tabs" id="per-rest-tabs"></div>
+            <div class="per-rest-cards" id="per-rest-cards"></div>`;
+        _refreshPerRestTabs();
+        _refreshPerRestCards();
+        document.getElementById('per-rest-tabs').addEventListener('click', e => {
+            const btn = e.target.closest('[data-rest]');
+            if (btn) { _activePerRestTab = btn.dataset.rest; _refreshPerRestTabs(); _refreshPerRestCards(); }
         });
+    }
 
-        const panel = document.getElementById(menuId);
-        if (panel) {
-            panel.classList.add('active');
-            panel.removeAttribute('aria-hidden');
+    function _refreshPerRestTabs() {
+        const el = document.getElementById('per-rest-tabs');
+        if (!el || !_perRestData) return;
+        el.innerHTML = Object.keys(_perRestData).map(k =>
+            `<button class="per-rest-tab${k === _activePerRestTab ? ' active' : ''}" data-rest="${k}">
+                ${escHtml(RESTAURANT_NAMES[k] || k)}</button>`
+        ).join('');
+    }
+
+    function _refreshPerRestCards() {
+        const el = document.getElementById('per-rest-cards');
+        if (!el || !_perRestData || !_activePerRestTab) return;
+        const picks = _perRestData[_activePerRestTab];
+        const isStadion = _activePerRestTab === 'stadion';
+        const order = isStadion
+            ? ['best_daily', 'best_weekly', 'healthiest', 'most_filling', 'best_value']
+            : ['best', 'healthiest', 'most_filling', 'best_value'];
+        el.innerHTML = order.map(key => {
+            const pick = picks[key];
+            if (!pick) return '';
+            const badge = pick.from
+                ? `<div><span class="per-rest-badge">${escHtml(SOURCE_LABELS[pick.from] || pick.from)}</span></div>`
+                : '';
+            return `<div class="per-rest-card">
+                <div class="per-rest-cat">${escHtml(PER_REST_LABELS[key] || key)}</div>
+                <div class="per-rest-dish">${escHtml(pick.dish)}</div>
+                ${badge}<div class="per-rest-reason">${escHtml(pick.reason)}</div>
+            </div>`;
+        }).join('');
+    }
+
+    function _handleModalKey(e) {
+        if (e.key === 'Escape') closeMenuPhoto();
+    }
+
+    function openMenuPhoto() {
+        const imgUrl = MENU_IMAGES[activeRestaurant];
+        if (!imgUrl) return;
+        document.getElementById('photo-modal-img').src = imgUrl;
+        document.getElementById('photo-modal').style.display = 'flex';
+        document.addEventListener('keydown', _handleModalKey);
+    }
+
+    function closeMenuPhoto() {
+        document.getElementById('photo-modal').style.display = 'none';
+        document.getElementById('photo-modal-img').src = '';
+        document.removeEventListener('keydown', _handleModalKey);
+    }
+
+    function _updatePhotoBtn() {
+        const btn = document.getElementById('photo-btn');
+        if (btn) btn.style.display = MENU_IMAGES[activeRestaurant] ? '' : 'none';
+    }
+
+    function renderWeekStrip(days) {
+        const container = document.getElementById('week-strip-container');
+        container.innerHTML = days.map((isoDate, i) => {
+            const open = isRestaurantOpen(activeRestaurant, isoDate);
+            const isActive = isoDate === activeDay;
+            const [, m, d] = isoDate.split('-');
+            return `<div class="day-chip${isActive ? ' active' : ''}${!open ? ' day-chip-closed' : ''}"
+                         data-date="${isoDate}"
+                         onclick="${open ? `selectDay('${isoDate}')` : ''}"
+                         aria-label="${DAY_ABBR[i]} ${parseInt(d)}.${m}${open ? '' : ' — zatvoreno'}"
+                         role="button" tabindex="${open ? 0 : -1}">
+                <span class="day-chip-name">${DAY_ABBR[i]}</span>
+                <span class="day-chip-date">${parseInt(d)}</span>
+                <span class="day-chip-dot${open ? '' : ' closed'}"></span>
+            </div>`;
+        }).join('');
+    }
+
+    function renderMenuContent(restaurantKey, isoDate) {
+        const rest = menuData.restaurants[restaurantKey];
+        const content = document.getElementById('menu-content');
+        const caption = document.getElementById('menu-caption');
+        if (!rest) { content.innerHTML = ''; return; }
+
+        const dayData = getDayData(restaurantKey, isoDate);
+        const isClosed = dayData ? dayData.closed : false;
+        const hasWeekly = rest.type === 'both' && (rest.weekly_items || []).length > 0;
+
+        if (isClosed && !hasWeekly) {
+            content.innerHTML = `<div class="closed-notice">
+                <div class="closed-notice-icon">🚪</div>
+                <div class="closed-notice-text">Restoran zatvoran ovaj dan</div>
+            </div>`;
+            caption.textContent = '';
+            return;
         }
 
-        const btn = document.getElementById('tab-' + menuId);
-        if (btn) {
-            btn.classList.add('active');
-            btn.setAttribute('aria-selected', 'true');
+        let html = '';
+
+        if (!isClosed && dayData && dayData.items.length) {
+            html += renderTable(dayData.items);
         }
 
+        if (hasWeekly) {
+            if (html) html += `<div class="weekly-divider">Tjedni meni — uvijek dostupno</div>`;
+            html += renderTable(rest.weekly_items);
+        }
+
+        if (!html) {
+            html = `<div class="closed-notice">
+                <div class="closed-notice-icon">🚪</div>
+                <div class="closed-notice-text">Restoran zatvoran ovaj dan</div>
+            </div>`;
+        }
+
+        content.innerHTML = html;
+
+        const [y, m, d] = isoDate.split('-');
+        const sourceLabel = restaurantKey === 'breza' ? 'izvor: restoran-breza.com' : 'OCR iz tjednog jelovnika';
+        caption.textContent = `${parseInt(d)}.${parseInt(m)}.${y}. · ${sourceLabel}`;
+    }
+
+    function renderTable(items) {
+        if (!items || !items.length) return '';
+        const rows = items.map(item =>
+            `<tr><td>${escHtml(item.dish)}</td><td class="price">${escHtml(item.price)}</td></tr>`
+        ).join('');
+        return `<table class="menu-table" aria-label="Jelovnik">${rows}</table>`;
+    }
+
+    function showMenu(restaurantKey) {
+        activeRestaurant = restaurantKey;
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.restaurant === restaurantKey);
+            b.setAttribute('aria-selected', b.dataset.restaurant === restaurantKey);
+        });
         const nameEl = document.getElementById('restaurant-name');
-        if (nameEl && RESTAURANT_NAMES[menuId]) {
-            nameEl.textContent = RESTAURANT_NAMES[menuId];
-        }
+        if (nameEl) nameEl.textContent = RESTAURANT_NAMES[restaurantKey] || restaurantKey;
 
-        if (history.pushState) {
-            history.pushState(null, null, '#' + menuId);
+        if (history.pushState) history.pushState(null, null, '#' + restaurantKey);
+        _updatePhotoBtn();
+
+        if (!menuData) return;
+        const days = getWeekDays(menuData);
+        renderWeekStrip(days);
+        renderMenuContent(restaurantKey, activeDay);
+    }
+
+    function selectDay(isoDate) {
+        activeDay = isoDate;
+        const days = getWeekDays(menuData);
+        renderWeekStrip(days);
+        renderMenuContent(activeRestaurant, isoDate);
+        renderPicks(isoDate);
+    }
+
+    async function loadMenus() {
+        try {
+            const res = await fetch(CDN, { cache: 'no-cache' });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            menuData = await res.json();
+            injectMenuSchema(menuData);
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('menu-card').style.display = '';
+
+            const days = getWeekDays(menuData);
+            const today = todayISO();
+            const openDays = days.filter(d =>
+                Object.keys(menuData.restaurants).some(k => isRestaurantOpen(k, d))
+            );
+            activeDay = days.includes(today) ? today : (openDays[0] || days[0]);
+
+            const hash = window.location.hash.slice(1);
+            if (hash && menuData.restaurants[hash]) {
+                activeRestaurant = hash;
+            }
+
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.toggle('active', b.dataset.restaurant === activeRestaurant);
+                b.setAttribute('aria-selected', b.dataset.restaurant === activeRestaurant);
+            });
+            document.getElementById('restaurant-name').textContent = RESTAURANT_NAMES[activeRestaurant];
+            document.getElementById('week-tag').textContent = menuData.week || 'Tjedni jelovnik';
+            _updatePhotoBtn();
+
+            renderWeekStrip(days);
+            renderMenuContent(activeRestaurant, activeDay);
+            renderPicks(activeDay);
+
+        } catch (err) {
+            console.error('Menu load failed:', err);
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('error-state').style.display = '';
         }
     }
 
-    function openViewer(imgSrc, altText) {
-        const viewer = document.getElementById('viewer');
-        const viewerImg = document.getElementById('viewer-img');
-        viewerImg.src = imgSrc;
-        viewerImg.alt = altText || '';
-        viewer.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        viewer.querySelector('.close-btn').focus();
+    function injectMenuSchema(data) {
+        const existing = document.getElementById('menu-schema-ld');
+        if (existing) existing.remove();
+
+        const restaurants = data.restaurants;
+        const schemas = Object.entries(restaurants).map(([key, rest]) => {
+            const allItems = [];
+            (rest.days || []).forEach(day => {
+                if (!day.closed) {
+                    (day.items || []).forEach(item => allItems.push(item));
+                }
+            });
+            (rest.weekly_items || []).forEach(item => allItems.push(item));
+
+            const uniqueItems = allItems.filter((item, idx, arr) =>
+                arr.findIndex(i => i.dish === item.dish) === idx
+            );
+
+            return {
+                "@context": "https://schema.org",
+                "@type": "FoodEstablishment",
+                "name": rest.name,
+                "servesCuisine": "Croatian",
+                "hasMenu": {
+                    "@type": "Menu",
+                    "hasMenuSection": [{
+                        "@type": "MenuSection",
+                        "hasMenuItem": uniqueItems.map(item => ({
+                            "@type": "MenuItem",
+                            "name": item.dish,
+                            "offers": {
+                                "@type": "Offer",
+                                "price": item.price.replace(/[^\d,\.]/g, ''),
+                                "priceCurrency": "EUR"
+                            }
+                        }))
+                    }]
+                }
+            };
+        });
+
+        const script = document.createElement('script');
+        script.id = 'menu-schema-ld';
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(schemas);
+        document.head.appendChild(script);
     }
 
-    function closeViewer() {
-        const viewer = document.getElementById('viewer');
-        viewer.classList.remove('active');
-        document.body.style.overflow = '';
-        const activeImg = document.querySelector('.menu-panel.active img');
-        if (activeImg) activeImg.focus();
-    }
-
-    function handleImageKeyDown(e, imgSrc, altText) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            openViewer(imgSrc, altText);
-        }
-    }
-
-    document.getElementById('viewer').addEventListener('click', function (e) {
-        if (e.target === this || e.target.classList.contains('viewer-inner')) {
-            closeViewer();
-        }
-    });
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && document.getElementById('viewer').classList.contains('active')) {
-            closeViewer();
-        }
-    });
-
-    window.addEventListener('DOMContentLoaded', function () {
-        const hash = window.location.hash.slice(1);
-        if (hash && RESTAURANT_NAMES[hash]) {
-            showMenu(hash);
-        }
-    });
+    document.addEventListener('DOMContentLoaded', loadMenus);
 
     window.addEventListener('popstate', function () {
-        const hash = window.location.hash.slice(1) || 'stadion';
-        if (RESTAURANT_NAMES[hash]) {
+        const hash = window.location.hash.slice(1);
+        if (hash && menuData && menuData.restaurants[hash]) {
             showMenu(hash);
         }
     });
