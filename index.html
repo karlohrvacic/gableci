@@ -155,7 +155,7 @@
                     "name": "Koje je radno vrijeme restorana za gablec u Samoboru?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Bistro Stadion radi ponedjeljkom do subote od 9 do 15 sati (nedjeljom zatvoreno). Bistro Vugrinšćak radi svaki dan — ponedjeljak do subota 9–23h, nedjeljom 10–23h. Restoran Breza radi ponedjeljkom do subote od 8 do 19 sati (nedjeljom zatvoreno)."
+                        "text": "Bistro Stadion radi ponedjeljkom do subote od 8 do 15 sati (nedjeljom zatvoreno). Bistro Vugrinšćak radi svaki dan — ponedjeljak do subota 9–23h, nedjeljom 10–23h (dostava 9–13h). Restoran Breza radi ponedjeljkom do subote od 7 do 19 sati (nedjeljom zatvoreno)."
                     }
                 },
                 {
@@ -177,7 +177,7 @@
         "@type": "Restaurant",
         "name": "Bistro Stadion",
         "description": "Bistro Stadion u Samoboru nudi pristupačne tjedne gablece s tradicioanalnim jelima hrvatske kuhinje. Obilne porcije po pristupačnim cijenama, 5–10 eura po osobi.",
-        "telephone": "+38599707243",
+        "telephone": "+385997072438",
         "url": "https://gableci.hrva.cc/#stadion",
         "image": "https://cdn.hrva.cc/gableci/stadion.jpg",
         "menu": "https://gableci.hrva.cc/#stadion",
@@ -195,7 +195,7 @@
             {
                 "@type": "OpeningHoursSpecification",
                 "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                "opens": "09:00",
+                "opens": "08:00",
                 "closes": "15:00"
             }
         ]
@@ -207,7 +207,7 @@
         "@type": "Restaurant",
         "name": "Bistro Vugrinšćak",
         "description": "Bistro Vugrinšćak u Samoboru nudi raznovrsne tjedne menije s naglaskom na sezonske sastojke i domaće recepte. Otvoren svaki dan, 10–15 eura po osobi.",
-        "telephone": "+38599336051",
+        "telephone": "+385993360519",
         "url": "https://gableci.hrva.cc/#vugrinscak",
         "image": "https://cdn.hrva.cc/gableci/vugrinscak.jpg",
         "menu": "https://gableci.hrva.cc/#vugrinscak",
@@ -262,7 +262,7 @@
             {
                 "@type": "OpeningHoursSpecification",
                 "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                "opens": "08:00",
+                "opens": "07:00",
                 "closes": "19:00"
             }
         ]
@@ -535,7 +535,23 @@
             transition: all var(--t);
             -webkit-tap-highlight-color: transparent;
             letter-spacing: 0.01em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
         }
+
+        .tab-status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: #4b5563;
+            transition: background 0.3s;
+        }
+
+        .tab-status-dot.open  { background: #22c55e; }
+        .tab-status-dot.closed { background: #4b5563; }
 
         .tab-btn:hover {
             color: var(--text);
@@ -575,7 +591,7 @@
             padding: 20px 28px 18px;
             border-bottom: 1px solid var(--card-border);
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
             gap: 12px;
         }
@@ -587,6 +603,25 @@
             font-style: italic;
             color: var(--text-dark);
             line-height: 1.15;
+        }
+
+        .restaurant-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            opacity: 0.85;
+            transition: opacity var(--t);
+        }
+
+        .restaurant-phone:hover {
+            opacity: 1;
+            text-decoration: underline;
         }
 
         .week-tag {
@@ -609,12 +644,121 @@
             animation: fadeUp 0.6s 0.04s ease both;
         }
 
+        .week-summary {
+            max-width: 860px;
+            margin: 0 auto 16px;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-style: italic;
+            text-align: center;
+            opacity: 0.85;
+        }
+
         .picks-strip {
             max-width: 860px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
+        }
+
+        .best-of-week-section {
+            max-width: 860px;
+            margin: 18px auto 0;
+        }
+
+        .best-of-week-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .best-of-week-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .bow-card {
+            background: rgba(184, 137, 42, 0.06);
+            border: 1px solid rgba(184, 137, 42, 0.18);
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+
+        .bow-category {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+
+        .bow-date {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .bow-restaurant {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 3px;
+        }
+
+        .bow-dish {
+            font-size: 12px;
+            color: var(--text);
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        /* ===== TAG FILTER ===== */
+        .tag-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 12px 20px 4px;
+        }
+
+        .tag-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            background: var(--card);
+            color: var(--text-dark-muted);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all var(--t);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .tag-chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .tag-chip.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .menu-table tr.tag-hidden {
+            display: none;
         }
 
         .pick-card {
@@ -646,6 +790,13 @@
             font-weight: 500;
             margin-bottom: 4px;
             line-height: 1.35;
+        }
+
+        .pick-price {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 4px;
         }
 
         .pick-reason {
@@ -709,6 +860,12 @@
             line-height: 1.35;
             margin-bottom: 3px;
         }
+        .per-rest-price {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 3px;
+        }
         .per-rest-reason {
             font-size: 10px;
             color: var(--text-muted);
@@ -753,6 +910,13 @@
         .day-chip.day-chip-closed {
             opacity: 0.45;
             cursor: not-allowed;
+        }
+
+        .day-chip.day-chip-all-closed {
+            opacity: 0.25;
+            cursor: default;
+            pointer-events: none;
+            background: #e8e2d9;
         }
 
         .day-chip-name {
@@ -824,15 +988,38 @@
             width: 90px;
         }
 
+        .menu-section-label {
+            padding: 10px 24px 6px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--card);
+        }
+
         .weekly-divider {
             padding: 10px 24px 6px;
             font-size: 10px;
             font-weight: 600;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: var(--accent);
-            border-top: 1px solid var(--card-border);
-            background: var(--card);
+            color: var(--text-dark-muted);
+            border-top: 2px solid var(--card-border);
+            background: #f5f1ea;
+        }
+
+        .menu-table--weekly td {
+            color: var(--text-dark-muted);
+            font-size: 13px;
+        }
+
+        .menu-table--weekly td.price {
+            color: var(--text-dark-muted);
+        }
+
+        .menu-table--weekly tr:nth-child(even) td {
+            background: #f5f1ea;
         }
 
         .closed-notice {
@@ -849,6 +1036,42 @@
             font-size: 15px;
             font-weight: 600;
             color: var(--text-dark-muted);
+        }
+
+        .closed-notice-links {
+            margin-top: 16px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .closed-notice-link {
+            background: none;
+            border: 1.5px solid var(--accent);
+            color: var(--accent);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all var(--t);
+        }
+
+        .closed-notice-link:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .picks-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 24px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark-muted);
+            opacity: 0.7;
         }
 
         /* ===== LOADING / ERROR ===== */
@@ -1209,6 +1432,15 @@
             to { transform: rotate(360deg); }
         }
 
+        @keyframes menuFadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .menu-section.anim {
+            animation: menuFadeIn 0.18s ease forwards;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
             .site-header {
@@ -1263,7 +1495,8 @@
                 gap: 14px;
             }
 
-            .picks-strip {
+            .picks-strip,
+            .best-of-week-strip {
                 grid-template-columns: repeat(2, 1fr);
             }
             .week-strip {
@@ -1492,8 +1725,13 @@
 
 <!-- Picks strip -->
 <section class="picks-section" id="picks-section" aria-label="Preporuke za danas" style="display:none">
+    <div class="week-summary" id="week-summary" style="display:none"></div>
     <div class="picks-strip" id="picks-strip"></div>
     <div class="per-rest-section" id="per-rest-section"></div>
+    <div class="best-of-week-section" id="bow-section" style="display:none">
+        <div class="best-of-week-label">Preporuka tjedna</div>
+        <div class="best-of-week-strip" id="bow-strip"></div>
+    </div>
 </section>
 
 <nav class="restaurant-nav" aria-label="Odabir restorana">
@@ -1505,7 +1743,7 @@
                 id="tab-stadion"
                 data-restaurant="stadion"
                 onclick="showMenu('stadion')">
-            Stadion
+            <span class="tab-status-dot" id="dot-stadion"></span>Stadion
         </button>
         <button class="tab-btn"
                 role="tab"
@@ -1514,7 +1752,7 @@
                 id="tab-vugrinscak"
                 data-restaurant="vugrinscak"
                 onclick="showMenu('vugrinscak')">
-            Vugrinšćak
+            <span class="tab-status-dot" id="dot-vugrinscak"></span>Vugrinšćak
         </button>
         <button class="tab-btn"
                 role="tab"
@@ -1523,7 +1761,7 @@
                 id="tab-breza"
                 data-restaurant="breza"
                 onclick="showMenu('breza')">
-            Breza
+            <span class="tab-status-dot" id="dot-breza"></span>Breza
         </button>
     </div>
 </nav>
@@ -1553,7 +1791,13 @@
     </div>
     <div id="menu-card" class="menu-card" style="display:none">
         <div class="menu-card-top">
-            <h2 class="restaurant-name" id="restaurant-name">Restoran Stadion</h2>
+            <div>
+                <h2 class="restaurant-name" id="restaurant-name">Restoran Stadion</h2>
+                <a id="restaurant-phone" class="restaurant-phone" href="tel:+385997072438" aria-label="Nazovi za narudžbu">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.48 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.29 6.29l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span id="restaurant-phone-label">Naruči:</span> <span id="restaurant-phone-num">099 707 2438</span>
+                </a>
+            </div>
             <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
                 <span class="week-tag" id="week-tag">Tjedni jelovnik</span>
                 <button class="photo-btn" id="photo-btn" onclick="openMenuPhoto()"
@@ -1568,6 +1812,7 @@
             </div>
         </div>
         <div id="week-strip-container" class="week-strip"></div>
+        <div id="tag-filter" class="tag-filter" style="display:none"></div>
         <div id="menu-content" class="menu-section"></div>
         <p class="menu-caption" id="menu-caption"></p>
     </div>
@@ -1600,21 +1845,21 @@
             <tbody>
                 <tr>
                     <td>Bistro Stadion</td>
-                    <td>Pon–Sub: 9–15h · Ned: zatvoreno</td>
+                    <td>Pon–Sub: 8–15h · Ned: zatvoreno</td>
                     <td>5–10 €</td>
-                    <td><a href="tel:+38599707243">099 707 2438</a></td>
+                    <td><a href="tel:+385997072438">099 707 2438</a> · <a href="tel:+385997072439">099 707 2439</a> · <a href="tel:+38513886039">01 388 6039</a></td>
                 </tr>
                 <tr>
                     <td>Bistro Vugrinšćak</td>
-                    <td>Pon–Sub: 9–23h · Ned: 10–23h</td>
+                    <td>Pon–Sub: 9–23h · Ned: 10–23h · Dostava 9–13h</td>
                     <td>10–15 €</td>
-                    <td><a href="tel:+38599336051">099 336 0519</a></td>
+                    <td><a href="tel:+385993360519">099 336 0519</a> · <a href="tel:+38514404015">01 440 4015</a></td>
                 </tr>
                 <tr>
                     <td>Restoran Breza</td>
-                    <td>Pon–Sub: 8–19h · Ned: zatvoreno</td>
+                    <td>Pon–Sub: 7–19h · Ned: zatvoreno</td>
                     <td>5–10 €</td>
-                    <td><a href="tel:+38513336171">01 333 6171</a></td>
+                    <td><a href="tel:+385913879332">091 387 9332</a> · <a href="tel:+38513336171">01 333 6171</a></td>
                 </tr>
             </tbody>
         </table>
@@ -1683,8 +1928,7 @@
             </details>
             <details class="faq-item">
                 <summary class="faq-q">Koje je radno vrijeme restorana za gablec u Samoboru?</summary>
-                <p class="faq-a">Bistro Stadion radi ponedjeljkom do subote od 9 do 15 sati (nedjeljom zatvoreno). Bistro Vugrinšćak radi svaki dan — ponedjeljak do subota 9–23h, nedjeljom
-                    10–23h. Restoran Breza radi ponedjeljkom do subote od 8 do 19 sati (nedjeljom zatvoreno).</p>
+                <p class="faq-a">Bistro Stadion radi ponedjeljkom do subote od 8 do 15 sati (nedjeljom zatvoreno). Bistro Vugrinšćak radi svaki dan — ponedjeljak do subota 9–23h, nedjeljom 10–23h (dostava 9–13h). Restoran Breza radi ponedjeljkom do subote od 7 do 19 sati (nedjeljom zatvoreno).</p>
             </details>
             <details class="faq-item">
                 <summary class="faq-q">Gdje se nalaze restorani za gablec u Samoboru?</summary>
@@ -1823,6 +2067,61 @@
         vugrinscak: 'https://cdn.hrva.cc/gableci/vugrinscak.jpg',
         breza: 'https://cdn.hrva.cc/gableci/breza.jpg'
     };
+    const RESTAURANT_PHONES = {
+        stadion:    { display: '099 707 2438', tel: '+385997072438' },
+        vugrinscak: { display: '099 336 0519', tel: '+385993360519' },
+        breza:      { display: '091 387 9332', tel: '+385913879332' }
+    };
+    // dayOfWeek: 0=Sun,1=Mon,...,6=Sat  open/close in decimal hours (local time)
+    const TAG_META = {
+        meso:           { label: 'Meso',           icon: '🥩' },
+        riba:           { label: 'Riba',            icon: '🐟' },
+        vegetarijansko: { label: 'Vegetarijansko',  icon: '🌿' },
+        juha:           { label: 'Juha / varivo',   icon: '🍲' },
+        tjestenina:     { label: 'Tjestenina',      icon: '🍝' },
+        salata:         { label: 'Salata',          icon: '🥗' },
+        lagano:         { label: 'Lagano',          icon: '☁️' },
+        obilno:         { label: 'Obilno',          icon: '💪' },
+    };
+
+    const BOW_LABELS = {
+        best:         'Najbolje',
+        healthiest:   'Najzdravije',
+        most_filling: 'Najobilnije',
+        best_value:   'Cijena/kvaliteta',
+    };
+
+    let activeTag = null;
+
+    const RESTAURANT_HOURS = {
+        stadion:    [{ days: [1,2,3,4,5,6], open: 8,  close: 15 }],
+        vugrinscak: [{ days: [1,2,3,4,5,6], open: 9,  close: 23 },
+                     { days: [0],            open: 10, close: 23 }],
+        breza:      [{ days: [1,2,3,4,5,6], open: 7,  close: 19 }]
+    };
+
+    function isLikelyOpen(restaurantKey) {
+        const now = new Date();
+        const dow = now.getDay();
+        const h = now.getHours() + now.getMinutes() / 60;
+        for (const slot of (RESTAURANT_HOURS[restaurantKey] || [])) {
+            if (slot.days.includes(dow) && h >= slot.open && h < slot.close) return true;
+        }
+        return false;
+    }
+
+    function updateOpenStatusDots() {
+        Object.keys(RESTAURANT_HOURS).forEach(key => {
+            const dot = document.getElementById('dot-' + key);
+            const btn = document.getElementById('tab-' + key);
+            if (!dot || !btn) return;
+            const open = isLikelyOpen(key);
+            dot.className = 'tab-status-dot ' + (open ? 'open' : 'closed');
+            btn.title = (open ? 'Otvoreno' : 'Zatvoreno') + ' prema radnom vremenu';
+        });
+    }
+
+    updateOpenStatusDots();
 
     function escHtml(s) {
         return String(s)
@@ -1871,27 +2170,153 @@
     function isRestaurantOpen(restaurantKey, isoDate) {
         const day = getDayData(restaurantKey, isoDate);
         if (!day) {
+            // No day entry at all — only consider open if type:both with weekly items
             const rest = menuData.restaurants[restaurantKey];
             return rest.type === 'both' && (rest.weekly_items || []).length > 0;
         }
         return !day.closed;
     }
 
+    function lookupPrice(restaurantKey, dishName, isoDate) {
+        const rest = menuData && menuData.restaurants[restaurantKey];
+        if (!rest) return '';
+        const dayData = getDayData(restaurantKey, isoDate);
+        if (dayData) {
+            const found = (dayData.items || []).find(i => i.dish === dishName);
+            if (found) return found.price;
+        }
+        const found = (rest.weekly_items || []).find(i => i.dish === dishName);
+        return found ? found.price : '';
+    }
+
+    function isAnyRestaurantOpen(isoDate) {
+        return Object.keys(menuData.restaurants).some(k => isRestaurantOpen(k, isoDate));
+    }
+
+    function getOpenRestaurantsForDay(isoDate) {
+        return Object.keys(menuData.restaurants).filter(
+            k => k !== activeRestaurant && isRestaurantOpen(k, isoDate)
+        );
+    }
+
+    function getDishTags(dishName) {
+        return (menuData && menuData.dish_tags && menuData.dish_tags[dishName]) || [];
+    }
+
+    function filterByTag(tag) {
+        activeTag = activeTag === tag ? null : tag;
+        _applyTagFilter();
+        _renderTagChips();
+    }
+
+    function _applyTagFilter() {
+        document.querySelectorAll('.menu-table tr').forEach(row => {
+            if (!activeTag) { row.classList.remove('tag-hidden'); return; }
+            const dish = row.querySelector('td:first-child');
+            if (!dish) { row.classList.remove('tag-hidden'); return; }
+            const tags = getDishTags(dish.textContent.trim());
+            row.classList.toggle('tag-hidden', !tags.includes(activeTag));
+        });
+    }
+
+    function _renderTagChips() {
+        const container = document.getElementById('tag-filter');
+        if (!container) return;
+        const chips = container.querySelectorAll('.tag-chip[data-tag]');
+        chips.forEach(chip => {
+            chip.classList.toggle('active', chip.dataset.tag === activeTag);
+        });
+    }
+
+    function renderTagFilter(restaurantKey, isoDate) {
+        const container = document.getElementById('tag-filter');
+        if (!container || !menuData || !menuData.dish_tags) {
+            if (container) container.style.display = 'none';
+            return;
+        }
+        const rest = menuData.restaurants[restaurantKey];
+        if (!rest) { container.style.display = 'none'; return; }
+
+        // Collect all tags present in current view
+        const presentTags = new Set();
+        const dayData = getDayData(restaurantKey, isoDate);
+        if (dayData && !dayData.closed) {
+            (dayData.items || []).forEach(item => getDishTags(item.dish).forEach(t => presentTags.add(t)));
+        }
+        (rest.weekly_items || []).forEach(item => getDishTags(item.dish).forEach(t => presentTags.add(t)));
+
+        if (presentTags.size === 0) { container.style.display = 'none'; return; }
+
+        activeTag = null;
+        const orderedTags = Object.keys(TAG_META).filter(t => presentTags.has(t));
+        container.innerHTML = orderedTags.map(tag => {
+            const m = TAG_META[tag];
+            return `<button class="tag-chip" data-tag="${tag}" onclick="filterByTag('${tag}')">${m.icon} ${m.label}</button>`;
+        }).join('');
+        container.style.display = orderedTags.length ? 'flex' : 'none';
+    }
+
+    function renderWeeklySummary() {
+        const el = document.getElementById('week-summary');
+        if (!el) return;
+        const summary = menuData && menuData.summary;
+        if (summary) {
+            el.textContent = summary;
+            el.style.display = '';
+        } else {
+            el.style.display = 'none';
+        }
+    }
+
+    function renderBestOfWeek() {
+        const section = document.getElementById('bow-section');
+        const strip = document.getElementById('bow-strip');
+        if (!section || !strip) return;
+        const bow = menuData && menuData.best_of_week;
+        if (!bow || !Object.keys(bow).length) { section.style.display = 'none'; return; }
+
+        strip.innerHTML = Object.entries(BOW_LABELS).map(([key, label]) => {
+            const pick = bow[key];
+            if (!pick) return '';
+            const restName = RESTAURANT_NAMES[pick.restaurant] || pick.restaurant;
+            const [y, m, d] = (pick.date || '').split('-');
+            const dateStr = d && m ? `${parseInt(d)}.${parseInt(m)}.` : '';
+            return `<div class="bow-card">
+                <div class="bow-category">${label}</div>
+                ${dateStr ? `<div class="bow-date">${dateStr}</div>` : ''}
+                <div class="bow-restaurant">${escHtml(restName)}</div>
+                <div class="bow-dish">${escHtml(pick.dish)}</div>
+            </div>`;
+        }).join('');
+        section.style.display = '';
+    }
+
     function renderPicks(isoDate) {
         const dayPicks = (menuData.picks || {})[isoDate];
         const section = document.getElementById('picks-section');
         const strip = document.getElementById('picks-strip');
-        if (!dayPicks) { section.style.display = 'none'; return; }
+        if (!dayPicks) {
+            if (!isAnyRestaurantOpen(isoDate)) {
+                strip.innerHTML = `<div class="picks-empty">Danas nema gableca — svi restorani zatvoreni</div>`;
+                document.getElementById('per-rest-section').innerHTML = '';
+                section.style.display = '';
+            } else {
+                section.style.display = 'none';
+            }
+            return;
+        }
 
         const overall = dayPicks.overall || dayPicks;
         strip.innerHTML = Object.entries(PICK_LABELS).map(([key, label]) => {
             const pick = overall[key];
             if (!pick) return '';
             const restName = RESTAURANT_NAMES[pick.restaurant] || pick.restaurant;
+            const price = lookupPrice(pick.restaurant, pick.dish, isoDate);
             return `<div class="pick-card">
                 <div class="pick-category">${label}</div>
                 <div class="pick-restaurant">${escHtml(restName)}</div>
                 <div class="pick-dish">${escHtml(pick.dish)}</div>
+                ${price ? `<div class="pick-price">${escHtml(price)}</div>` : ''}
                 <div class="pick-reason">${escHtml(pick.reason)}</div>
             </div>`;
         }).join('');
@@ -1917,7 +2342,7 @@
         const picks = _perRestData[_activePerRestTab];
         const isStadion = _activePerRestTab === 'stadion';
         const order = isStadion
-            ? ['best_daily', 'best_weekly', 'healthiest', 'most_filling', 'best_value']
+            ? ['best_daily', 'healthiest', 'most_filling', 'best_value']
             : ['best', 'healthiest', 'most_filling', 'best_value'];
         el.innerHTML = order.map(key => {
             const pick = picks[key];
@@ -1925,9 +2350,11 @@
             const badge = pick.from
                 ? `<div><span class="per-rest-badge">${escHtml(SOURCE_LABELS[pick.from] || pick.from)}</span></div>`
                 : '';
+            const price = lookupPrice(_activePerRestTab, pick.dish, activeDay);
             return `<div class="per-rest-card">
                 <div class="per-rest-cat">${escHtml(PER_REST_LABELS[key] || key)}</div>
                 <div class="per-rest-dish">${escHtml(pick.dish)}</div>
+                ${price ? `<div class="per-rest-price">${escHtml(price)}</div>` : ''}
                 ${badge}<div class="per-rest-reason">${escHtml(pick.reason)}</div>
             </div>`;
         }).join('');
@@ -1979,14 +2406,22 @@
         const container = document.getElementById('week-strip-container');
         container.innerHTML = days.map((isoDate, i) => {
             const open = isRestaurantOpen(activeRestaurant, isoDate);
+            const anyOpen = isAnyRestaurantOpen(isoDate);
             const isActive = isoDate === activeDay;
             const [, m, d] = isoDate.split('-');
             const isToday = isoDate === todayISO();
-        return `<div class="day-chip${isActive ? ' active' : ''}${isToday ? ' today' : ''}${!open ? ' day-chip-closed' : ''}"
+            const cls = ['day-chip',
+                isActive ? 'active' : '',
+                isToday ? 'today' : '',
+                !open ? 'day-chip-closed' : '',
+                !anyOpen ? 'day-chip-all-closed' : '',
+            ].filter(Boolean).join(' ');
+            const ariaLabel = `${DAY_ABBR[i]} ${parseInt(d)}.${m}${!anyOpen ? ' — svi zatvoreni' : !open ? ' — zatvoreno' : ''}`;
+            return `<div class="${cls}"
                          data-date="${isoDate}"
-                         onclick="${open ? `selectDay('${isoDate}')` : ''}"
-                         aria-label="${DAY_ABBR[i]} ${parseInt(d)}.${m}${open ? '' : ' — zatvoreno'}"
-                         role="button" tabindex="${open ? 0 : -1}">
+                         onclick="${open && anyOpen ? `selectDay('${isoDate}')` : ''}"
+                         aria-label="${ariaLabel}"
+                         role="button" tabindex="${open && anyOpen ? 0 : -1}">
                 <span class="day-chip-name">${DAY_ABBR[i]}</span>
                 <span class="day-chip-date">${parseInt(d)}</span>
                 <span class="day-chip-dot${open ? '' : ' closed'}"></span>
@@ -2005,9 +2440,18 @@
         const hasWeekly = rest.type === 'both' && (rest.weekly_items || []).length > 0;
 
         if (isClosed && !hasWeekly) {
+            const openElsewhere = getOpenRestaurantsForDay(isoDate);
+            const linksHtml = openElsewhere.length
+                ? `<div class="closed-notice-links">${
+                    openElsewhere.map(k =>
+                        `<button class="closed-notice-link" onclick="showMenu('${k}')">${escHtml(RESTAURANT_NAMES[k])}</button>`
+                    ).join('')
+                  }</div>`
+                : '';
             content.innerHTML = `<div class="closed-notice">
                 <div class="closed-notice-icon">🚪</div>
                 <div class="closed-notice-text">Restoran zatvoran ovaj dan</div>
+                ${linksHtml}
             </div>`;
             caption.textContent = '';
             return;
@@ -2016,12 +2460,13 @@
         let html = '';
 
         if (!isClosed && dayData && dayData.items.length) {
-            html += renderTable(dayData.items);
+            if (hasWeekly) html += `<div class="menu-section-label">Dnevna ponuda</div>`;
+            html += renderTable(dayData.items, false);
         }
 
         if (hasWeekly) {
-            if (html) html += `<div class="weekly-divider">Tjedni meni — uvijek dostupno</div>`;
-            html += renderTable(rest.weekly_items);
+            html += `<div class="weekly-divider">Stalna ponuda — uvijek dostupno</div>`;
+            html += renderTable(rest.weekly_items, true);
         }
 
         if (!html) {
@@ -2031,29 +2476,55 @@
             </div>`;
         }
 
+        content.classList.remove('anim');
+        void content.offsetWidth;
+        content.classList.add('anim');
         content.innerHTML = html;
 
         const [y, m, d] = isoDate.split('-');
         const sourceLabel = restaurantKey === 'breza' ? 'izvor: restoran-breza.com' : 'OCR iz tjednog jelovnika';
         caption.textContent = `${parseInt(d)}.${parseInt(m)}.${y}. · ${sourceLabel}`;
+
+        renderTagFilter(restaurantKey, isoDate);
     }
 
-    function renderTable(items) {
+    function renderTable(items, isWeekly = false) {
         if (!items || !items.length) return '';
+        const cls = isWeekly ? 'menu-table menu-table--weekly' : 'menu-table';
+        const label = isWeekly ? 'Stalna ponuda' : 'Dnevna ponuda';
         const rows = items.map(item =>
             `<tr><td>${escHtml(item.dish)}</td><td class="price">${escHtml(item.price)}</td></tr>`
         ).join('');
-        return `<table class="menu-table" aria-label="Jelovnik">${rows}</table>`;
+        return `<table class="${cls}" aria-label="${label}">${rows}</table>`;
     }
 
     function showMenu(restaurantKey) {
         activeRestaurant = restaurantKey;
+        try { localStorage.setItem('gableci-rest', restaurantKey); } catch(_) {}
         document.querySelectorAll('.tab-btn').forEach(b => {
             b.classList.toggle('active', b.dataset.restaurant === restaurantKey);
             b.setAttribute('aria-selected', b.dataset.restaurant === restaurantKey);
         });
         const nameEl = document.getElementById('restaurant-name');
         if (nameEl) nameEl.textContent = RESTAURANT_NAMES[restaurantKey] || restaurantKey;
+        const phone = RESTAURANT_PHONES[restaurantKey];
+        const phoneEl = document.getElementById('restaurant-phone');
+        const phoneNumEl = document.getElementById('restaurant-phone-num');
+        const phoneLabelEl = document.getElementById('restaurant-phone-label');
+        if (phoneEl && phone) {
+            phoneEl.href = 'tel:' + phone.tel;
+            phoneEl.style.display = '';
+            if (phoneNumEl) phoneNumEl.textContent = phone.display;
+            if (phoneLabelEl) {
+                const now = new Date();
+                const dow = now.getDay();
+                const h = now.getHours() + now.getMinutes() / 60;
+                const isDelivery = restaurantKey === 'vugrinscak' && dow >= 1 && dow <= 6 && h >= 9 && h < 13;
+                phoneLabelEl.textContent = isDelivery ? 'Dostava:' : 'Naruči:';
+            }
+        } else if (phoneEl) {
+            phoneEl.style.display = 'none';
+        }
 
         if (history.pushState) history.pushState(null, null, '#' + restaurantKey);
         _updatePhotoBtn();
@@ -2067,6 +2538,7 @@
         const days = getWeekDays(menuData);
         renderWeekStrip(days);
         renderMenuContent(restaurantKey, activeDay);
+        renderTagFilter(restaurantKey, activeDay);
     }
 
     function selectDay(isoDate) {
@@ -2075,6 +2547,7 @@
         renderWeekStrip(days);
         renderMenuContent(activeRestaurant, isoDate);
         renderPicks(isoDate);
+        renderTagFilter(activeRestaurant, isoDate);
     }
 
     async function loadMenus() {
@@ -2096,6 +2569,11 @@
             const hash = window.location.hash.slice(1);
             if (hash && menuData.restaurants[hash]) {
                 activeRestaurant = hash;
+            } else {
+                try {
+                    const saved = localStorage.getItem('gableci-rest');
+                    if (saved && menuData.restaurants[saved]) activeRestaurant = saved;
+                } catch(_) {}
             }
 
             document.querySelectorAll('.tab-btn').forEach(b => {
@@ -2114,6 +2592,9 @@
             renderWeekStrip(days);
             renderMenuContent(activeRestaurant, activeDay);
             renderPicks(activeDay);
+            renderTagFilter(activeRestaurant, activeDay);
+            renderWeeklySummary();
+            renderBestOfWeek();
 
         } catch (err) {
             console.error('Menu load failed:', err);
