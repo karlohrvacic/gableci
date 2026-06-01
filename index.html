@@ -2061,7 +2061,7 @@
         best_value: 'Najjeftinije'
     };
     const SOURCE_LABELS = { daily: 'dnevni', weekly: 'tjedni' };
-    const DAY_ABBR = ['PON', 'UTO', 'SRI', 'ČET', 'PET'];
+    const DAY_ABBR = ['PON', 'UTO', 'SRI', 'ČET', 'PET', 'SUB'];
     const MENU_IMAGES = {
         stadion: 'https://cdn.hrva.cc/gableci/stadion.jpg',
         vugrinscak: 'https://cdn.hrva.cc/gableci/vugrinscak.jpg',
@@ -2437,9 +2437,10 @@
 
         const dayData = getDayData(restaurantKey, isoDate);
         const isClosed = dayData ? dayData.closed : false;
-        const hasWeekly = rest.type === 'both' && (rest.weekly_items || []).length > 0;
+        // A closed restaurant can't serve its permanent menu either — hide weekly.
+        const hasWeekly = rest.type === 'both' && !isClosed && (rest.weekly_items || []).length > 0;
 
-        if (isClosed && !hasWeekly) {
+        if (isClosed) {
             const openElsewhere = getOpenRestaurantsForDay(isoDate);
             const linksHtml = openElsewhere.length
                 ? `<div class="closed-notice-links">${
