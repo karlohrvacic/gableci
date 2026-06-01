@@ -644,6 +644,57 @@
             animation: fadeUp 0.6s 0.04s ease both;
         }
 
+        .picks-accordion-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 13px 18px;
+            background: linear-gradient(135deg, #1a1208 0%, #261a0a 100%);
+            border: 1px solid rgba(184, 137, 42, 0.25);
+            border-radius: 10px;
+            color: var(--text);
+            font-family: inherit;
+            cursor: pointer;
+            transition: border-color var(--t);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .picks-accordion-toggle:hover {
+            border-color: rgba(184, 137, 42, 0.5);
+        }
+
+        .picks-accordion-title {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: var(--gold);
+        }
+
+        .picks-accordion-chevron {
+            font-size: 14px;
+            color: var(--gold);
+            transition: transform var(--t);
+        }
+
+        .picks-accordion-toggle[aria-expanded="true"] .picks-accordion-chevron {
+            transform: rotate(180deg);
+        }
+
+        .picks-accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, margin-top 0.35s ease;
+        }
+
+        .picks-accordion-body.open {
+            max-height: 6000px;
+            margin-top: 16px;
+        }
+
         .week-summary {
             max-width: 860px;
             margin: 0 auto 16px;
@@ -988,9 +1039,21 @@
             width: 90px;
         }
 
+        /* Daily offer ("Dnevna ponuda") — larger & more prominent than the weekly table */
+        .menu-table:not(.menu-table--weekly) td {
+            font-size: 16px;
+            font-weight: 500;
+            padding: 15px 24px;
+        }
+
+        .menu-table:not(.menu-table--weekly) td.price {
+            font-weight: 700;
+            width: 104px;
+        }
+
         .menu-section-label {
-            padding: 10px 24px 6px;
-            font-size: 10px;
+            padding: 12px 24px 8px;
+            font-size: 12px;
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
@@ -1517,8 +1580,17 @@
                 font-size: 13px;
             }
 
+            .menu-table:not(.menu-table--weekly) td {
+                padding: 13px 14px;
+                font-size: 15px;
+            }
+
             .menu-table td.price {
                 width: 72px;
+            }
+
+            .menu-table:not(.menu-table--weekly) td.price {
+                width: 84px;
             }
         }
 
@@ -1724,13 +1796,21 @@
 </header>
 
 <!-- Picks strip -->
-<section class="picks-section" id="picks-section" aria-label="Preporuke za danas" style="display:none">
-    <div class="week-summary" id="week-summary" style="display:none"></div>
-    <div class="picks-strip" id="picks-strip"></div>
-    <div class="per-rest-section" id="per-rest-section"></div>
-    <div class="best-of-week-section" id="bow-section" style="display:none">
-        <div class="best-of-week-label">Preporuka tjedna</div>
-        <div class="best-of-week-strip" id="bow-strip"></div>
+<section class="picks-section" id="picks-section" aria-label="AI preporuke za danas" style="display:none">
+    <button type="button" class="picks-accordion-toggle" id="picks-toggle"
+            aria-expanded="false" aria-controls="picks-accordion-body"
+            onclick="togglePicksAccordion()">
+        <span class="picks-accordion-title">🤖 AI preporuke za danas</span>
+        <span class="picks-accordion-chevron" aria-hidden="true">▾</span>
+    </button>
+    <div class="picks-accordion-body" id="picks-accordion-body">
+        <div class="week-summary" id="week-summary" style="display:none"></div>
+        <div class="picks-strip" id="picks-strip"></div>
+        <div class="per-rest-section" id="per-rest-section"></div>
+        <div class="best-of-week-section" id="bow-section" style="display:none">
+            <div class="best-of-week-label">Preporuka tjedna</div>
+            <div class="best-of-week-strip" id="bow-strip"></div>
+        </div>
     </div>
 </section>
 
@@ -2540,6 +2620,14 @@
         renderWeekStrip(days);
         renderMenuContent(restaurantKey, activeDay);
         renderTagFilter(restaurantKey, activeDay);
+    }
+
+    function togglePicksAccordion() {
+        const body = document.getElementById('picks-accordion-body');
+        const btn = document.getElementById('picks-toggle');
+        if (!body || !btn) return;
+        const open = body.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
     function selectDay(isoDate) {
