@@ -27,4 +27,10 @@
             <image:caption>Tjedni jelovnik restorana Breza u Samoboru - pregled na Gableci platformi</image:caption>
         </image:image>
     </url>
+    <url>
+        <loc>https://gableci.hrva.cc/privacy.html</loc>
+        <lastmod>2026-06-10</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.1</priority>
+    </url>
 </urlset>
